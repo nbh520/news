@@ -4,6 +4,7 @@ import Home from '@/pages/Home/Home.vue'
 import Video from '@/pages/Video/Video.vue';
 import Find from '@/pages/Find/Find.vue'
 import Mine from '@/pages/Mine/Mine.vue'
+import Search from '@/pages/Search/Search.vue'
 
 Vue.use(Router)
 
@@ -39,6 +40,10 @@ export default new Router({
       meta: {
         showFoot: true
       }
+    },
+    {
+      path: '/search',
+      component: Search
     }
   ]
 })

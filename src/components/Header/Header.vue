@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <header class="header">
-    <div class="search">
+    <div class="search" @click="$router.replace('/search')">
       <div class="search-icon">
         <i class="iconfont icon-sousuo"></i>
       </div>
