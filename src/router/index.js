@@ -1,15 +1,44 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import Home from '@/pages/Home/Home.vue'
+import Video from '@/pages/Video/Video.vue';
+import Find from '@/pages/Find/Find.vue'
+import Mine from '@/pages/Mine/Mine.vue'
 
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
+  routes: [{
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      redirect: '/home',
+    },
+    {
+      path: '/home',
+      component: Home,
+      meta: {
+        showFoot: true
+      }
+    },
+    {
+      path: '/video',
+      component: Video,
+      meta: {
+        showFoot: true
+      }
+    },
+    {
+      path: '/find',
+      component: Find,
+      meta: {
+        showFoot: true
+      }
+    },
+    {
+      path: '/mine',
+      component: Mine,
+      meta: {
+        showFoot: true
+      }
     }
   ]
 })
