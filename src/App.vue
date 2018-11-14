@@ -7,9 +7,16 @@
 
 <script>
 import Foot from "@/components/Foot/Foot.vue";
+import { reqNowNews } from "./api/server";
 export default {
   components: {
     Foot
+  },
+  async mounted() {
+    setTimeout(async () => {
+      const result = await reqNowNews();
+      // console.log(result)
+    }, 1000);
   }
 };
 </script>

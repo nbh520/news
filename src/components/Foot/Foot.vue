@@ -52,6 +52,7 @@ export default {
 	height: 50px;
 	z-index: 100;
 	display: flex;
+	background-color: #fff;
 	border-top: 1px solid #ddd;
 
 	.foot-item {

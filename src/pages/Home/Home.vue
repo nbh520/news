@@ -6,7 +6,7 @@
       <CategorySelect></CategorySelect>
     </section>
     <section class="content">
-      <OneImgMessage></OneImgMessage>
+      <OneImgMessage :news="news"></OneImgMessage>
     </section>
   </div>
 </template>
@@ -19,7 +19,14 @@ import OneImgMessage from "@/components/Message/OneImgMessage.vue";
 
 export default {
   data() {
-    return {};
+    return {
+      news: {
+        title: "大陆通过新媒体对台发动所谓“三战”？国台办回应",
+        title_image: "./image/example.jpg",
+        source: "海外网",
+        ratings: "131"
+      }
+    };
   },
   components: {
     Header,
