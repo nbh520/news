@@ -1,11 +1,12 @@
 <!--  -->
 <template>
-  <div>
+  <div class="main">
     <section class="header">
       <Header></Header>
-    </section>
-    <section class="category-selection">
       <CategorySelect></CategorySelect>
+    </section>
+    <section class="content">
+      <OneImgMessage></OneImgMessage>
     </section>
   </div>
 </template>
@@ -13,6 +14,8 @@
 <script>
 import Header from "@/components/Header/Header.vue";
 import CategorySelect from "@/components/Category/CategorySelect.vue";
+import Search from "../Search/Search.vue";
+import OneImgMessage from "@/components/Message/OneImgMessage.vue";
 
 export default {
   data() {
@@ -20,22 +23,27 @@ export default {
   },
   components: {
     Header,
-    CategorySelect
+    CategorySelect,
+    Search,
+    OneImgMessage
   }
 };
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
 @import '../../common/stylus/mixins.styl';
 
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-}
+.main {
+  width: 100%;
+  height: 100%;
 
-.category-selection {
-  position: fixed;
-  top: 50px;
-  left: 0;
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  .content {
+    margin-top: 85px;
+  }
 }
 </style>

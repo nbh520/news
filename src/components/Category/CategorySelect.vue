@@ -1,7 +1,7 @@
 <!-- 首页新闻类别选择 -->
 <template>
   <div class="category">
-    <ul>
+    <ul class="top-category-menu" > 
       <li>关注</li>
       <li>推荐</li>
       <li>影视</li>
@@ -20,6 +20,8 @@
       <li>科技</li>
       <li>搞笑</li>
     </ul>
+
+ 
   </div>
 </template>
 
@@ -35,20 +37,29 @@ export default {
 
 .category {
   width: 100%;
-  height: 30px;
+  height: 35px;
   background-color: #fff;
+  margin-top: 50px;
+  background-color: #f4f5f6;
+  bottom-border-1px(#ccc);
 
-  >ul {
-    width: 250%;
+  >.top-category-menu {
+    overflow: hidden;
+    overflow-x: scroll;
+    white-space: nowrap;
     height: 100%;
 
     li {
-      min-width: 50px;
+      width: 50px;
       height: 100%;
+      display: inline-block;
       text-align: center;
-      line-height: 30px;
-      float: left;
+      line-height: 35px;
     }
+  }
+
+  ::-webkit-scrollbar {
+    height: 0;
   }
 }
 </style>
