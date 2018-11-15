@@ -5,7 +5,9 @@
 			<span class="item-icon">
 				<i class="iconfont icon-shouye"></i>
 			</span>
-			<span>首页</span>
+			<span>
+				<router-link to="/home" @click.native="flushCount()">首页</router-link>
+			</span>
 		</div>
 		<div class="foot-item" @click="goto('/video')" :class="{on : isSelect('/video')}">
 			<span class="item-icon">
@@ -36,6 +38,9 @@ export default {
     },
     isSelect(path) {
       return this.$route.path === path;
+    },
+    flushCount() {
+      this.$router.go(0);
     }
   }
 };

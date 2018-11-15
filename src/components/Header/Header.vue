@@ -1,11 +1,13 @@
 <!--  -->
 <template>
   <header class="header">
-    <div class="search" @click="$router.replace('/search')">
-      <div class="search-icon">
-        <i class="iconfont icon-sousuo"></i>
-      </div>
-      <input type="text">
+    <div class="search">
+      <!-- <router-link to="/search"> -->
+        <div class="search-icon">
+          <i class="iconfont icon-sousuo"></i>
+        </div>
+        <input type="text">
+      <!-- </router-link> -->
     </div>
     <div class="release">
       <span class="camera">
@@ -59,6 +61,7 @@ export default {
       border-radius: 0 3px 3px 0;
       font-size: 12px;
       margin-top: 10px;
+      margin-left: -1px;
       outline: none;
       vertical-align: baseline;
     }

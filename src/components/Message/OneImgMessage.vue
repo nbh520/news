@@ -2,7 +2,7 @@
 <template>
   <section>
     <div class="news-content">
-      <a href="" class="article_link">
+      <router-link to="/new_content" class="article_link">
         <div class="item_detail_desc">
           <h3>{{news.title}}</h3>
           <div class="item_info">
@@ -11,109 +11,10 @@
           </div>
         </div>
         <div class="list_img_holder">
-          <img src="./image/example.jpg" alt="">
+          <img :src="news.imgsrc" alt="">
         </div>
-      </a>
+      </router-link>
     </div>
-    <div class="news-content">
-      <a href="" class="article_link">
-        <div class="item_detail_desc">
-          <h3>大陆通过新媒体对台发动所谓“三战”？国台办回应</h3>
-          <div class="item_info">
-            <span>海外网</span>
-            <span>评论6</span>
-          </div>
-        </div>
-        <div class="list_img_holder">
-          <img src="./image/example.jpg" alt="">
-        </div>
-      </a>
-    </div>
-    <div class="news-content">
-      <a href="" class="article_link">
-        <div class="item_detail_desc">
-          <h3>大陆通过新媒体对台发动所谓“三战”？国台办回应</h3>
-          <div class="item_info">
-            <span>海外网</span>
-            <span>评论6</span>
-          </div>
-        </div>
-        <div class="list_img_holder">
-          <img src="./image/example.jpg" alt="">
-        </div>
-      </a>
-    </div>
-    <div class="news-content">
-      <a href="" class="article_link">
-        <div class="item_detail_desc">
-          <h3>大陆通过新媒体对台发动所谓“三战”？国台办回应</h3>
-          <div class="item_info">
-            <span>海外网</span>
-            <span>评论6</span>
-          </div>
-        </div>
-        <div class="list_img_holder">
-          <img src="./image/example.jpg" alt="">
-        </div>
-      </a>
-    </div>
-    <div class="news-content">
-      <a href="" class="article_link">
-        <div class="item_detail_desc">
-          <h3>大陆通过新媒体对台发动所谓“三战”？国台办回应</h3>
-          <div class="item_info">
-            <span>海外网</span>
-            <span>评论6</span>
-          </div>
-        </div>
-        <div class="list_img_holder">
-          <img src="./image/example.jpg" alt="">
-        </div>
-      </a>
-    </div>
-    <div class="news-content">
-      <a href="" class="article_link">
-        <div class="item_detail_desc">
-          <h3>大陆通过新媒体对台发动所谓“三战”？国台办回应</h3>
-          <div class="item_info">
-            <span>海外网</span>
-            <span>评论6</span>
-          </div>
-        </div>
-        <div class="list_img_holder">
-          <img src="./image/example.jpg" alt="">
-        </div>
-      </a>
-    </div>
-    <div class="news-content">
-      <a href="" class="article_link">
-        <div class="item_detail_desc">
-          <h3>大陆通过新媒体对台发动所谓“三战”？国台办回应</h3>
-          <div class="item_info">
-            <span>海外网</span>
-            <span>评论6</span>
-          </div>
-        </div>
-        <div class="list_img_holder">
-          <img src="./image/example.jpg" alt="">
-        </div>
-      </a>
-    </div>
-    <div class="news-content">
-      <a href="" class="article_link">
-        <div class="item_detail_desc">
-          <h3>大陆通过新媒体对台发动所谓“三战”？国台办回应</h3>
-          <div class="item_info">
-            <span>海外网</span>
-            <span>评论6</span>
-          </div>
-        </div>
-        <div class="list_img_holder">
-          <img src="./image/example.jpg" alt="">
-        </div>
-      </a>
-    </div>
-    
   </section>
 </template>
 

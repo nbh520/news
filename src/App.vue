@@ -7,20 +7,9 @@
 
 <script>
 import Foot from "@/components/Foot/Foot.vue";
-import { mapState } from "vuex";
 export default {
   components: {
     Foot
-  },
-  mounted() {
-    this.$store.dispatch("getNowNews");
-
-    setTimeout(() => {
-      console.log(this.now_news());
-    }, 1000);
-  },
-  methods: {
-    ...mapState(["now_news"])
   }
 };
 </script>

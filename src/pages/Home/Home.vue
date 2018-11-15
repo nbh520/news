@@ -6,7 +6,7 @@
       <CategorySelect></CategorySelect>
     </section>
     <section class="content">
-      <OneImgMessage :news="news"></OneImgMessage>
+      <OneImgMessage :news="item" v-if="item.imgsrc" v-for="(item, index) in now_news" :key="index"></OneImgMessage>
     </section>
   </div>
 </template>
@@ -16,17 +16,25 @@ import Header from "@/components/Header/Header.vue";
 import CategorySelect from "@/components/Category/CategorySelect.vue";
 import Search from "../Search/Search.vue";
 import OneImgMessage from "@/components/Message/OneImgMessage.vue";
+import { mapState } from "vuex";
 
 export default {
   data() {
     return {
-      news: {
-        title: "大陆通过新媒体对台发动所谓“三战”？国台办回应",
-        title_image: "./image/example.jpg",
-        source: "海外网",
-        ratings: "131"
-      }
+      new: []
     };
+  },
+  mounted() {
+    return new Promise((res, rej) => {
+      this.$store.dispatch("getNowNews").then(res => {
+        this.new = this.now_news;
+        console.log(this.now_news);
+      });
+    });
+    setTimeout(() => {}, 2000);
+  },
+  computed: {
+    ...mapState(["now_news"])
   },
   components: {
     Header,
@@ -51,6 +59,7 @@ export default {
 
   .content {
     margin-top: 85px;
+    margin-bottom: 50px;
   }
 }
 </style>

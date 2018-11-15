@@ -6,6 +6,8 @@ import Find from '@/pages/Find/Find.vue'
 import Mine from '@/pages/Mine/Mine.vue'
 import Search from '@/pages/Search/Search.vue'
 
+import NewContent from '@/pages/NewContent/New_content'
+
 Vue.use(Router)
 
 export default new Router({
@@ -44,6 +46,10 @@ export default new Router({
     {
       path: '/search',
       component: Search
+    },
+    {
+      path: '/new_content',
+      component: NewContent
     }
   ]
 })
