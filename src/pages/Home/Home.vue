@@ -5,8 +5,8 @@
       <Header></Header>
       <CategorySelect></CategorySelect>
     </section>
-    <section class="content">
-      <OneImgMessage :news="item" v-if="item.imgsrc" v-for="(item, index) in now_news" :key="index"></OneImgMessage>
+    <section v-if="allNews" class="content">
+      <OneImgMessage :news="item" v-if="item.imgsrc&&item.docid" v-for="(item, index) in allNews" :key="index"></OneImgMessage>
     </section>
   </div>
 </template>
@@ -21,17 +21,15 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      new: []
+      allNews: [] //实时新闻
     };
   },
   mounted() {
-    return new Promise((res, rej) => {
-      this.$store.dispatch("getNowNews").then(res => {
-        this.new = this.now_news;
-        console.log(this.now_news);
+    return new Promise((resolve, reject) => {
+      this.$store.dispatch("getNowNews").then(resolve => {
+        this.allNews = this.now_news;
       });
     });
-    setTimeout(() => {}, 2000);
   },
   computed: {
     ...mapState(["now_news"])
@@ -58,8 +56,7 @@ export default {
   }
 
   .content {
-    margin-top: 85px;
-    margin-bottom: 50px;
+    margin: 85px 0 50px 0;
   }
 }
 </style>
