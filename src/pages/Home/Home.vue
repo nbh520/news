@@ -6,7 +6,12 @@
       <CategorySelect></CategorySelect>
     </section>
     <section v-if="allNews" class="content">
-      <OneImgMessage :news="item" v-if="item.imgsrc&&item.docid" v-for="(item, index) in allNews" :key="index"></OneImgMessage>
+      <OneImgMessage
+        :news="item"
+        v-if="item.imgsrc&&item.docid"
+        v-for="(item, index) in allNews"
+        :key="index"
+      ></OneImgMessage>
     </section>
   </div>
 </template>
@@ -21,7 +26,8 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      allNews: [] //实时新闻
+      allNews: [], //实时新闻
+      wrapperHeight: 0 //新闻内容高度
     };
   },
   mounted() {

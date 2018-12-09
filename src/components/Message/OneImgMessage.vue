@@ -11,7 +11,7 @@
           </div>
         </div>
         <div class="list_img_holder">
-          <img :src="news.imgsrc" alt="">
+          <img :src="news.imgsrc" alt>
         </div>
       </router-link>
     </div>
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { Loadmore } from "mint-ui";
 export default {
   data() {
     return {};
@@ -28,7 +29,7 @@ export default {
   }
 };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
 .news-content {
   margin: 0 15px;
   border-bottom: 1px solid rgba(221, 221, 221, 0.6);
@@ -69,6 +70,7 @@ export default {
 
       img {
         width: 100%;
+        height: 70px;
       }
     }
   }
