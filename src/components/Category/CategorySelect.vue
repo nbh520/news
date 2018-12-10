@@ -1,7 +1,7 @@
 <!-- 首页新闻类别选择 -->
 <template>
   <div class="category">
-    <ul class="top-category-menu" > 
+    <ul class="top-category-menu">
       <li>关注</li>
       <li>推荐</li>
       <li>影视</li>
@@ -20,8 +20,6 @@
       <li>科技</li>
       <li>搞笑</li>
     </ul>
-
- 
   </div>
 </template>
 
@@ -32,15 +30,15 @@ export default {
   }
 };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" >
 @import '../../common/stylus/mixins.styl';
 
 .category {
   width: 100%;
   height: 35px;
   background-color: #fff;
-  margin-top: 50px;
   background-color: #f4f5f6;
+  border-bottom: 1px solid #ccc;
   bottom-border-1px(#ccc);
 
   >.top-category-menu {

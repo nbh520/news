@@ -6,12 +6,30 @@
       <CategorySelect></CategorySelect>
     </section>
     <section v-if="allNews" class="content">
-      <OneImgMessage
-        :news="item"
-        v-if="item.imgsrc&&item.docid"
-        v-for="(item, index) in allNews"
-        :key="index"
-      ></OneImgMessage>
+      <div class="page-loadmore-wrapper" ref="wrapper">
+        <mt-loadmore
+          :top-method="loadTop"
+          @translate-change="translateChange"
+          @top-status-change="handleTopChange"
+          ref="loadmore"
+        >
+          <ul class="page-loadmore-list">
+            <OneImgMessage
+              :news="item"
+              v-if="item.imgsrc&&item.docid"
+              v-for="(item, index) in allNews"
+              :key="index"
+              class="page-loadmore-listitem"
+            ></OneImgMessage>
+          </ul>
+          <div slot="top" class="mint-loadmore-top">
+            <span v-show="topStatus !== 'loading'" :class="{ 'is-rotate': topStatus === 'drop' }">↓</span>
+            <span v-show="topStatus === 'loading'">
+              <mt-spinner type="snake" :size="12"></mt-spinner>
+            </span>
+          </div>
+        </mt-loadmore>
+      </div>
     </section>
   </div>
 </template>
@@ -27,8 +45,27 @@ export default {
   data() {
     return {
       allNews: [], //实时新闻
-      wrapperHeight: 0 //新闻内容高度
+      wrapperHeight: 0, //新闻内容高度
+      translate: 0,
+      moveTranslate: 0,
+      topStatus: ""
     };
+  },
+  methods: {
+    handleTopChange(status) {
+      this.moveTranslate = 1;
+      this.topStatus = status;
+    },
+    translateChange(translate) {
+      const translateNum = +translate;
+      this.translate = translateNum.toFixed(2);
+      this.moveTranslate = (1 + translateNum / 70).toFixed(2);
+    },
+    loadTop() {
+      setTimeout(() => {
+        this.$refs.loadmore.onTopLoaded();
+      }, 5500);
+    }
   },
   mounted() {
     return new Promise((resolve, reject) => {
@@ -56,6 +93,8 @@ export default {
   height: 100%;
 
   .header {
+    width: 100%;
+    z-index: 1000;
     position: fixed;
     top: 0;
     left: 0;
@@ -63,6 +102,16 @@ export default {
 
   .content {
     margin: 85px 0 50px 0;
+    height: auto;
+
+    .mint-loadmore-top {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40px;
+      line-height: 40px;
+      margin-top: -40px;
+    }
   }
 }
 </style>

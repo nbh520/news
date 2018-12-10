@@ -1,12 +1,12 @@
 <!--  -->
 <template>
-  <header class="header">
+  <header class="head">
     <div class="search">
       <!-- <router-link to="/search"> -->
-        <div class="search-icon">
-          <i class="iconfont icon-sousuo"></i>
-        </div>
-        <input type="text">
+      <div class="search-icon">
+        <i class="iconfont icon-sousuo"></i>
+      </div>
+      <input type="text">
       <!-- </router-link> -->
     </div>
     <div class="release">
@@ -15,7 +15,6 @@
       </span>
       <span class="text">发布</span>
     </div>
-
   </header>
 </template>
 
@@ -26,10 +25,10 @@ export default {
   }
 };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" >
 @import '../../common/stylus/mixins.styl';
 
-.header {
+.head {
   width: 100%;
   height: 50px;
   background-color: $red;
