@@ -9,12 +9,12 @@
       <input type="text">
       <!-- </router-link> -->
     </div>
-    <div class="release">
+    <!-- <div class="release">
       <span class="camera">
         <i class="iconfont icon-zhaoxiangji1"></i>
       </span>
       <span class="text">发布</span>
-    </div>
+    </div>-->
   </header>
 </template>
 
@@ -35,7 +35,7 @@ export default {
   color: #000;
 
   >.search {
-    width: 80%;
+    width: 95%;
     height: 100%;
     float: left;
     font-size: 0;

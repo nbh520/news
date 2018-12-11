@@ -1,6 +1,6 @@
 <!-- 登录组件 -->
 <template>
-  <div class="component-login" @mousedown="isClose">
+  <div class="component-login">
     <div class="close">
       <span>
         <i class="iconfont icon-cuo" @click="closeWindow"></i>
@@ -38,8 +38,11 @@ export default {
   data() {
     return {
       registerText: "账号注册",
-      pwdLoginText: "密码登录"
+      pwdLoginText: "密码登录",
+      list: []
     };
+  },
+  mounted() {
   },
   methods: {
     //关闭当前登录页
@@ -67,13 +70,7 @@ export default {
       }
     },
     //判断是否下拉关闭
-    isClose(event) {
-      console.log(event);
-
-      document.onmousemove = function() {
-        console.log("滑动");
-      };
-    }
+    isClose(event) {}
   }
 };
 </script>
