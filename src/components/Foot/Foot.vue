@@ -72,12 +72,7 @@ export default {
     };
   },
   mounted() {
-    let _this = this;
-    // document.onclick = function(){
-    // 	if(_this.isRelease){
-    // 		_this.isRelease = false
-    // 	}
-    // }
+    
   },
   methods: {
     goto(path) {
