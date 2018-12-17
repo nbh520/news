@@ -68,9 +68,7 @@ export default {
       if (name === "pwdLogin" && pwdLoginText === "手机登录") {
         this.pwdLoginText = "密码登录";
       }
-    },
-    //判断是否下拉关闭
-    isClose(event) {}
+    }
   }
 };
 </script>
