@@ -1,4 +1,4 @@
-<!--  -->
+
 <template>
   <header class="head">
     <div class="search">
