@@ -127,6 +127,7 @@ $backColor = #eee;
         height: 130px;
         border-radius: 50%;
         background: $red;
+        border: 1px solid $red;
         color: #fff;
         font-weight: bold;
         font-size: 16px;
@@ -177,11 +178,11 @@ $backColor = #eee;
       ul>li {
         padding-left: 17px;
         font-size: 16px;
-        height: 40px;
+        // height: 40px;
         line-height: 40px;
         background: #fff;
         border-bottom: 1px solid $backColor;
-        box-size: border;
+        box-sizing: border-box;
 
         span {
           float: right;

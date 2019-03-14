@@ -5,21 +5,11 @@
       <Header></Header>
       <CategorySelect></CategorySelect>
     </section>
-    <section v-if="allNews" class="content">
+    <section v-if="now_news" class="content">
       <div class="page-loadmore-wrapper" ref="wrapper">
-        <mt-loadmore
-          :top-method="loadTop"
-          @translate-change="translateChange"
-          @top-status-change="handleTopChange"
-          ref="loadmore"
-        >
+        <mt-loadmore :top-method="loadTop" @translate-change="translateChange" @top-status-change="handleTopChange" ref="loadmore">
           <ul class="page-loadmore-list">
-            <OneImgMessage
-              :news="item"
-              v-if="item.imgsrc&&item.docid"
-              v-for="(item, index) in allNews"
-              :key="index"
-              class="page-loadmore-listitem"
+            <OneImgMessage :news="item" v-for="(item, index) in now_news" :key="index" class="page-loadmore-listitem"
             ></OneImgMessage>
           </ul>
           <div slot="top" class="mint-loadmore-top">
@@ -52,6 +42,8 @@ export default {
     };
   },
   methods: {
+    ...mapState(["now_news"]),
+
     handleTopChange(status) {
       this.moveTranslate = 1;
       this.topStatus = status;
@@ -67,15 +59,12 @@ export default {
       }, 5500);
     }
   },
-  mounted() {
-    return new Promise((resolve, reject) => {
-      this.$store.dispatch("getNowNews").then(resolve => {
-        this.allNews = this.now_news;
-      });
-    });
+  async mounted() {
+    console.log(this)
+    
   },
   computed: {
-    ...mapState(["now_news"])
+    
   },
   components: {
     Header,
