@@ -19,7 +19,8 @@ export default new Router({
       path: '/home',
       component: Home,
       meta: {
-        showFoot: true
+        showFoot: true,
+        keepAlive: true
       }
     },
     {

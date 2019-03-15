@@ -2,16 +2,16 @@
 <template>
   <section>
     <div class="news-content">
-      <router-link to="/new_content" class="article_link">
+      <router-link :to="{path: '/new_content', query:{id : news.source_id}}" class="article_link">
         <div class="item_detail_desc">
           <h3>{{news.title}}</h3>
           <div class="item_info">
-            <span>{{news.source}}</span>
-            <span>评论{{news.ratings}}</span>
+            <span>{{news.author}}</span>
+            <span>评论{{news.commentCount}}</span>
           </div>
         </div>
         <div class="list_img_holder">
-          <img :src="news.imgsrc" alt>
+          <img :src="news.coverImg" alt>
         </div>
       </router-link>
     </div>

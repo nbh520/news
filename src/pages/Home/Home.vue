@@ -5,11 +5,11 @@
       <Header></Header>
       <CategorySelect></CategorySelect>
     </section>
-    <section v-if="now_news" class="content">
+    <section v-if="allNews" class="content">
       <div class="page-loadmore-wrapper" ref="wrapper">
         <mt-loadmore :top-method="loadTop" @translate-change="translateChange" @top-status-change="handleTopChange" ref="loadmore">
           <ul class="page-loadmore-list">
-            <OneImgMessage :news="item" v-for="(item, index) in now_news" :key="index" class="page-loadmore-listitem"
+            <OneImgMessage :news="item" v-for="(item, index) in allNews" :key="index" class="page-loadmore-listitem"
             ></OneImgMessage>
           </ul>
           <div slot="top" class="mint-loadmore-top">
@@ -22,6 +22,7 @@
       </div>
     </section>
   </div>
+  
 </template>
 
 <script>
@@ -30,6 +31,7 @@ import CategorySelect from "@/components/Category/CategorySelect.vue";
 import Search from "../Search/Search.vue";
 import OneImgMessage from "@/components/Message/OneImgMessage.vue";
 import { mapState } from "vuex";
+import {reqNowNews} from '@/api/server.js'
 
 export default {
   data() {
@@ -42,8 +44,6 @@ export default {
     };
   },
   methods: {
-    ...mapState(["now_news"]),
-
     handleTopChange(status) {
       this.moveTranslate = 1;
       this.topStatus = status;
@@ -55,16 +55,21 @@ export default {
     },
     loadTop() {
       setTimeout(() => {
+        console.log('结束刷新')
         this.$refs.loadmore.onTopLoaded();
       }, 5500);
     }
   },
   async mounted() {
-    console.log(this)
+    //更新首页新闻
+    reqNowNews().then(res => {
+      this.allNews = res.data
+      console.log(res.data)
+    })
+    
     
   },
   computed: {
-    
   },
   components: {
     Header,

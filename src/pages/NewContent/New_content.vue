@@ -9,6 +9,9 @@
 export default {
   data() {
     return {};
+  },
+  mounted(){
+    let id = this.$route.query.id
   }
 };
 </script>
