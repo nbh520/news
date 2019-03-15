@@ -2,12 +2,12 @@
 <template>
   <section>
     <div class="news-content">
-      <router-link :to="{path: '/new_content', query:{id : news.source_id}}" class="article_link">
+      <router-link :to="{path: '/new_content', query:{url : news.content, source : news.source_address,timestamp: new Date().getTime()}}" class="article_link">
         <div class="item_detail_desc">
           <h3>{{news.title}}</h3>
           <div class="item_info">
             <span>{{news.author}}</span>
-            <span>评论{{news.commentCount}}</span>
+            <span>{{news.commentCount}} 评论</span>
           </div>
         </div>
         <div class="list_img_holder">
@@ -22,7 +22,9 @@
 import { Loadmore } from "mint-ui";
 export default {
   data() {
-    return {};
+    return {
+      
+    };
   },
   props: {
     news: Object

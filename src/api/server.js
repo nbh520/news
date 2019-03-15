@@ -11,15 +11,15 @@ export const reqNowNews = () => ajax(`${BASEURL}/article/getNews`)
 /**
  *  TODO: 获取多少条新闻数
  */
-export const reqGetNews = (limit) => ajax(`${BASEURL}/article/get_news_list`,{limit})
+export const reqGetNews = (limit) => ajax(`${BASEURL}/article/getNewsList`,{limit})
 
 /**
  *  TODO: 获取新闻的内容
  * @param {新闻id值} id 
  */
-export const reqNewsContent = (id) => ajax(`${BASEURL}/article/get_news_content`)
+export const reqNewsContent = (url, source) => ajax(`${BASEURL}/article/getNewsContent`, {url, source})
 
 /**
  * TODO: 获取初始视频
  */
-export const reqIndexVideo = () => ajax(`${BASEURL}/video/get_index_video`)
+export const reqIndexVideo = () => ajax(`${BASEURL}/video/getIndexVideo`)
