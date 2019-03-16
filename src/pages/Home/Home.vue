@@ -5,7 +5,9 @@
       <Header></Header>
       <CategorySelect></CategorySelect>
     </section>
+   
     <section v-if="allNews" class="content">
+      <div class="down-refresh" :class="downRef ? 'down-refresh-after': 'down-refresh-before'">更新{{this.mountNewsCount}}条新闻</div>
       <div class="page-loadmore-wrapper" ref="wrapper">
         <mt-loadmore :top-method="loadTop" @translate-change="translateChange" @top-status-change="handleTopChange" ref="loadmore">
           <ul class="page-loadmore-list">
@@ -31,7 +33,8 @@ import CategorySelect from "@/components/Category/CategorySelect.vue";
 import Search from "../Search/Search.vue";
 import OneImgMessage from "@/components/Message/OneImgMessage.vue";
 import { mapState } from "vuex";
-import {reqNowNews} from '@/api/server.js'
+import {reqNowNews , reqGetNews} from '@/api/server.js'
+import { setTimeout } from 'timers';
 
 export default {
   data() {
@@ -40,7 +43,9 @@ export default {
       wrapperHeight: 0, //新闻内容高度
       translate: 0,
       moveTranslate: 0,
-      topStatus: ""
+      topStatus: "",
+      mountNewsCount: 0, //更新新闻条数
+      downRef: false, //下拉刷新
     };
   },
   methods: {
@@ -54,10 +59,16 @@ export default {
       this.moveTranslate = (1 + translateNum / 70).toFixed(2);
     },
     loadTop() {
-      setTimeout(() => {
-        console.log('结束刷新')
-        this.$refs.loadmore.onTopLoaded();
-      }, 5500);
+      //下拉刷新 更新十条新闻
+      reqGetNews(10).then(res => {
+        this.allNews = res.data.concat(this.allNews)
+        this.mountNewsCount = res.data.length
+        this.$refs.loadmore.onTopLoaded()
+        this.downRef = true
+        setTimeout( () => {
+          this.downRef = false
+        }, 1000)
+      })
     }
   },
   async mounted() {
@@ -98,6 +109,22 @@ export default {
     margin: 85px 0 50px 0;
     height: auto;
 
+    .down-refresh{
+      width 100%
+      height 30px
+      background-color $lightBlue
+      color $blue
+      display flex
+      justify-content center
+      align-items center
+    }
+    .down-refresh-before{
+      margin-top -30px;  
+    }
+    .down-refresh-after{
+      margin-top 0  
+    }
+    
     .mint-loadmore-top {
       display: flex;
       justify-content: center;

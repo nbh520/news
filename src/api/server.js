@@ -2,7 +2,9 @@
 import ajax from './ajax'
 
 // let BASEURL = 'http://localhost:4001'
+// let BASEURL = 'http://nibohan.xin:4001'
 let BASEURL = '/api'
+
 /**
  * 获取当前首页实时新闻
  */

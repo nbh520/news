@@ -3,7 +3,7 @@
   <div class="category">
     <ul class="top-category-menu">
       <li>关注</li>
-      <li>推荐</li>
+      <li class="selected">推荐</li>
       <li>影视</li>
       <li>游戏</li>
       <li>社会</li>
@@ -46,7 +46,9 @@ export default {
     overflow-x: scroll;
     white-space: nowrap;
     height: 100%;
-
+    .selected{
+      font-weight 700  
+    }
     li {
       width: 50px;
       height: 100%;
