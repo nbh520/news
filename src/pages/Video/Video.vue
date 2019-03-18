@@ -1,17 +1,16 @@
 <!--  -->
 <template>
   <div class="page-loadmore">
-    <div
-      class="loading-background"
-      :style="{ transform: 'scale3d(' + moveTranslate + ',' + moveTranslate + ',1)' }"
-    >translateScale : {{ moveTranslate }}</div>
+    <section class="header">
+      <Header></Header>
+      <CategorySelect></CategorySelect>
+    </section>
+    <div class="loading-background" :style="{ transform: 'scale3d(' + moveTranslate + ',' + moveTranslate + ',1)' }"></div>
     <div class="page-loadmore-wrapper" ref="wrapper" :style="{ height: wrapperHeight + 'px' }">
-      <mt-loadmore
-        :top-method="loadTop"
-        @translate-change="translateChange"
-        @top-status-change="handleTopChange"
-        ref="loadmore"
-      >
+      <mt-loadmore   :top-method="loadTop" @translate-change="translateChange"  @top-status-change="handleTopChange" ref="loadmore">
+        <OneVideoMessage></OneVideoMessage>
+        <!-- <OneVideoMessage></OneVideoMessage>
+        <OneVideoMessage></OneVideoMessage> -->
         <ul class="page-loadmore-list">
           <li v-for="(item,index) in list" :key="index" class="page-loadmore-listitem">{{ item }}</li>
         </ul>
@@ -28,7 +27,8 @@
 
 <script>
 import Header from "@/components/Header/Header.vue";
-
+import CategorySelect from "@/components/Category/CategorySelect.vue";
+import OneVideoMessage from "@/components/Message/OneVideoMessage.vue";
 export default {
   data() {
     return {
@@ -71,8 +71,22 @@ export default {
       document.documentElement.clientHeight -
       this.$refs.wrapper.getBoundingClientRect().top;
     console.log(this.$refs.wrapper);
+  },
+  components:{
+    Header,
+    CategorySelect,
+    OneVideoMessage
   }
 };
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
+
+.mint-loadmore-top{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  line-height: 60px;
+  margin-top: -60px;
+}
 </style>

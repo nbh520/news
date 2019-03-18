@@ -27,7 +27,8 @@ export default new Router({
       path: '/video',
       component: Video,
       meta: {
-        showFoot: true
+        showFoot: true,
+        keepAlive: true
       }
     },
     {
