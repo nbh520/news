@@ -22,6 +22,13 @@ export const reqGetNews = (limit) => ajax(`${BASEURL}/article/getNewsList`,{limi
 export const reqNewsContent = (url, source) => ajax(`${BASEURL}/article/getNewsContent`, {url, source})
 
 /**
- * TODO: 获取初始视频
+ * 获取推荐视频
  */
-export const reqIndexVideo = () => ajax(`${BASEURL}/video/getIndexVideo`)
+export const reqRecommendVideo = (limit = 10) => ajax(`${BASEURL}/video/getRecommendVideo`, {limit})
+
+
+/**
+ * 搜索新闻
+ * @param {关键字} keyword 
+ */
+export const reqSearchNews = (keyword) => ajax(`${BASEURL}/article/queryNews`, {keyword})

@@ -5,19 +5,15 @@
       <Header></Header>
       <CategorySelect></CategorySelect>
     </section>
+    <div class="down-refresh" :class="downRef ? 'down-refresh-after': 'down-refresh-before'">更新{{this.mountVideoCount}}条视频</div>
     <div class="loading-background" :style="{ transform: 'scale3d(' + moveTranslate + ',' + moveTranslate + ',1)' }"></div>
     <div class="page-loadmore-wrapper" ref="wrapper" :style="{ height: wrapperHeight + 'px' }">
       <mt-loadmore   :top-method="loadTop" @translate-change="translateChange"  @top-status-change="handleTopChange" ref="loadmore">
-        <OneVideoMessage></OneVideoMessage>
-        <!-- <OneVideoMessage></OneVideoMessage>
-        <OneVideoMessage></OneVideoMessage> -->
-        <ul class="page-loadmore-list">
-          <li v-for="(item,index) in list" :key="index" class="page-loadmore-listitem">{{ item }}</li>
-        </ul>
+        <OneVideoMessage v-for="(item, index) in videoList" :key="index" :video='item'></OneVideoMessage>
         <div slot="top" class="mint-loadmore-top">
           <span v-show="topStatus !== 'loading'" :class="{ 'is-rotate': topStatus === 'drop' }">↓</span>
           <span v-show="topStatus === 'loading'">
-            <mt-spinner type="snake"></mt-spinner>加载中
+            <mt-spinner type="snake"></mt-spinner>
           </span>
         </div>
       </mt-loadmore>
@@ -29,14 +25,17 @@
 import Header from "@/components/Header/Header.vue";
 import CategorySelect from "@/components/Category/CategorySelect.vue";
 import OneVideoMessage from "@/components/Message/OneVideoMessage.vue";
+import { reqRecommendVideo } from "@/api/server.js"
 export default {
   data() {
     return {
-      list: [],
+      videoList: [],
       topStatus: "",
       wrapperHeight: 0,
       translate: 0,
-      moveTranslate: 0
+      moveTranslate: 0,
+      mountVideoCount: 0, //更新视频条数
+      downRef: false, //下拉刷新
     };
   },
   methods: {
@@ -46,31 +45,36 @@ export default {
       console.log(status);
     },
     translateChange(translate) {
-      console.log(translate);
       const translateNum = +translate;
       this.translate = translateNum.toFixed(2);
       this.moveTranslate = (1 + translateNum / 70).toFixed(2);
     },
     loadTop() {
-      setTimeout(() => {
-        let firstValue = this.list[0];
-        for (let i = 1; i <= 10; i++) {
-          this.list.unshift(firstValue - i);
+      reqRecommendVideo().then(res => {
+        if(res.status === 1){
+          this.videoList = res.data.concat(this.videoList)
+          this.mountVideoCount = res.data.length
+          this.$refs.loadmore.onTopLoaded();
+          this.downRef = true
+          setTimeout( () => {
+            this.downRef = false
+          }, 1000)
         }
-        this.$refs.loadmore.onTopLoaded();
-      }, 5500);
+      })
+
     }
   },
   created() {
-    for (let i = 1; i <= 20; i++) {
-      this.list.push(i);
-    }
   },
   mounted() {
-    this.wrapperHeight =
-      document.documentElement.clientHeight -
-      this.$refs.wrapper.getBoundingClientRect().top;
+    this.wrapperHeight = document.documentElement.clientHeight - this.$refs.wrapper.getBoundingClientRect().top;
     console.log(this.$refs.wrapper);
+    //获取随机视频
+    reqRecommendVideo().then(res => {
+      if(res.status === 1){
+        this.videoList = res.data
+      }
+    })
   },
   components:{
     Header,
@@ -80,13 +84,29 @@ export default {
 };
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
+@import '../../common/stylus/mixins.styl';
+.down-refresh{
+  width 100%
+  height 30px
+  background-color $lightBlue
+  color $blue
+  display flex
+  justify-content center
+  align-items center
+}
+.down-refresh-before{
+  margin-top -30px;  
+}
+.down-refresh-after{
+  margin-top 0  
+}
 
 .mint-loadmore-top{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 60px;
-  line-height: 60px;
-  margin-top: -60px;
+  height: 40px;
+  line-height: 40px;
+  margin-top: -40px;
 }
 </style>
