@@ -3,7 +3,7 @@
   <div class="main">
     <section class="header">
       <Header></Header>
-      <CategorySelect></CategorySelect>
+      <CategorySelect @getNewsCategoryData="getNewsCategoryData"></CategorySelect>
     </section>
    
     <section v-if="allNews" class="content">
@@ -33,10 +33,10 @@ import CategorySelect from "@/components/Category/CategorySelect.vue";
 import Search from "../Search/Search.vue";
 import OneImgMessage from "@/components/Message/OneImgMessage.vue";
 import { mapState } from "vuex";
-import {reqNowNews , reqGetNews} from '@/api/server.js'
+import {reqNowNews , reqGetNews, reqNewsByCategory} from '@/api/server.js'
 import { setTimeout } from 'timers';
-
 export default {
+  name: 'Home',
   data() {
     return {
       allNews: [], //实时新闻
@@ -46,6 +46,7 @@ export default {
       topStatus: "",
       mountNewsCount: 0, //更新新闻条数
       downRef: false, //下拉刷新
+      category: '推荐', // 当前新闻类型
     };
   },
   methods: {
@@ -69,13 +70,19 @@ export default {
           this.downRef = false
         }, 1000)
       })
+    },
+    // 根据新闻类型获取相关新闻
+    async getNewsCategoryData(name){
+      let result = await reqNewsByCategory(name, 10)
+      if(result.status === 1){
+        console.log(result.data)
+      }
     }
   },
   async mounted() {
     //更新首页新闻
     reqNowNews().then(res => {
       this.allNews = res.data
-      console.log(res.data)
     })
     
     

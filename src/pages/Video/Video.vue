@@ -3,7 +3,7 @@
   <div class="page-loadmore">
     <section class="header">
       <Header></Header>
-      <CategorySelect></CategorySelect>
+      <!-- <CategorySelect></CategorySelect> -->
     </section>
     <div class="down-refresh" :class="downRef ? 'down-refresh-after': 'down-refresh-before'">更新{{this.mountVideoCount}}条视频</div>
     <div class="loading-background" :style="{ transform: 'scale3d(' + moveTranslate + ',' + moveTranslate + ',1)' }"></div>

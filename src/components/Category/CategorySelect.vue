@@ -4,30 +4,37 @@
     <ul class="top-category-menu">
       <li>关注</li>
       <li class="selected">推荐</li>
-      <li>影视</li>
-      <li>游戏</li>
-      <li>社会</li>
-      <li>音乐</li>
-      <li>综艺</li>
-      <li>美食</li>
-      <li>宠物</li>
-      <li>儿童</li>
-      <li>生活</li>
-      <li>体育</li>
-      <li>懂车帝</li>
-      <li>文化</li>
-      <li>时尚</li>
-      <li>科技</li>
-      <li>搞笑</li>
+      <li v-for="(category, index) in categorys" :key="index" @click="getNewsCategoryData(category.name)">{{ category.name }}</li>
     </ul>
   </div>
 </template>
 
 <script>
+import { reqAllCategory } from '@/api/server'
+import { mapState } from 'vuex'
 export default {
   data() {
-    return {};
-  }
+    return {
+      categorys: []
+    };
+  },
+  computed: {
+    ...mapState('index', [
+      'indexColumn'
+    ])
+  },
+  async created() {
+    const result = await reqAllCategory()
+    if(result.status === 1){
+      this.categorys = result.data.filter(item => item.name !== '暂无')
+    }
+    console.log(this.indexColumn)
+  },
+  methods: {
+    getNewsCategoryData(name){
+      this.$emit('getNewsCategoryData', name)
+    }
+  },
 };
 </script>
 <style lang="stylus" rel="stylesheet/stylus" >

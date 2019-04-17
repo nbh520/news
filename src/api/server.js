@@ -11,7 +11,7 @@ let BASEURL = '/api'
 export const reqNowNews = () => ajax(`${BASEURL}/article/getNews`)
 
 /**
- *  TODO: 获取多少条新闻数
+ *  获取多少条新闻数
  */
 export const reqGetNews = (limit) => ajax(`${BASEURL}/article/getNewsList`,{limit})
 
@@ -32,3 +32,9 @@ export const reqRecommendVideo = (limit = 10) => ajax(`${BASEURL}/video/getRecom
  * @param {关键字} keyword 
  */
 export const reqSearchNews = (keyword) => ajax(`${BASEURL}/article/queryNews`, {keyword})
+
+// 获取所有新闻类型
+export const reqAllCategory = () => ajax(`${BASEURL}/category/getAllCategory`)
+
+// 根据新闻类型获取新闻
+export const reqNewsByCategory = (name, limit = 10) => ajax(`${BASEURL}/article/queryNewsByCategory` ,{name, limit}, 'POST')
