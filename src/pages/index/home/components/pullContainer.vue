@@ -9,7 +9,7 @@
         <span v-show="topStatus === 'drop'">↑释放更新</span>
         <span v-show="topStatus === 'loading'">加载中...</span>
       </div>
-      <list-item :dataJson="data" />
+      <list-item :dataJson="contentData" />
     </mt-loadmore>
   </div>
 </template>
@@ -21,23 +21,22 @@ export default {
   data() {
     return {
       topStatus: '', // 下拉状态
-      data: {
-        a: 12,
-        b: 'asdf'
-      }
+      contentData: [], // 列表数据
     };
   },
   created() {
     this.init()
+    
   },
   methods: {
     ...mapActions('index', [
       'get_listItem_data'
     ]),
-    init() {
-      this.get_listItem_data()
+    async init() {
+      this.contentData = await this.get_listItem_data()
+      console.log(this.contentData)
     },
-    // 改变下拉状态
+    // 改变下拉时的状态
     handleTopChange(status) {
      this.topStatus = status
     },
@@ -51,7 +50,7 @@ export default {
 
 </script>
 <style lang="stylus" rel="stylesheet/scss" scoped>
-.contaner {
+.container {
   height 100%
   .mint-loadmore-top {
     height: 50px;

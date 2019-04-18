@@ -1,19 +1,31 @@
 <!-- 轮播组件  -->
 <template>
-  <div class="swiper-box">
-    <pull-container />
-  </div>
+  <swpier :options="swiperOption" class="swiper-box">
+    <swiper-slide v-for="(item, index) in indexColumn" :key="index">
+      <pull-container />
+    </swiper-slide>
+  </swpier>
 </template>
 
 <script>
 import pullContainer from './pullContainer'
+import { mapGetters } from 'vuex'
 export default {
   name: 'swiperContainer',
   components: {
     pullContainer
   },
+  computed: {
+    ...mapGetters('index', [
+      'indexColumn'
+    ])
+  },
   data() {
-    return {};
+    return {
+      swiperOption: {
+
+      }
+    };
   }
 }
 
