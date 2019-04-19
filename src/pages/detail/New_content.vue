@@ -1,16 +1,19 @@
 <!--  -->
 <template>
   <div>
-头条
+
   </div>
 </template>
 
 <script>
 export default {
+  name: '',
   data() {
     return {};
   }
-};
+}
+
 </script>
-<style>
+<style lang="stylus" rel="stylesheet/scss" scoped>
+
 </style>

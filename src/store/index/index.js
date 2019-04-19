@@ -36,8 +36,8 @@ export default {
     },
 
     // 获取文章列表数据
-    async get_listItem_data({}, page) {
-      let result = await reqGetNews(10)
+    async get_listItem_data({}, {limit, categoryName}) {
+      let result = await reqGetNews(limit, categoryName)
       return result.data
     }
   }

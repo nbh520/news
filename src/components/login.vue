@@ -10,7 +10,7 @@
       <span>账号密码登录</span>
     </div>
     <div class="login-form">
-      <form action>
+      <form action @submit.prevent="onSubmit">
         <input type="text" name="phone" placeholder="手机号">
         <input type="password" name="password" placeholder="密码">
         <button class="btn-sub">进入新闻</button>
@@ -35,6 +35,7 @@
 
 <script>
 export default {
+  name: 'login',
   data() {
     return {
       registerText: "账号注册",
@@ -48,6 +49,9 @@ export default {
     //关闭当前登录页
     closeWindow() {
       this.$emit("close", true);
+    },
+    onSubmit() {
+      return false
     },
 
     //改变文本值
@@ -72,7 +76,7 @@ export default {
   }
 };
 </script>
-<style lang="stylus" rel="stylesheet/stylus" >
+<style lang="stylus" rel="stylesheet/scss" scoped>
 .component-login {
   width: 100%;
   height: 100%;
@@ -97,6 +101,7 @@ export default {
   .login-title {
     text-align: center;
     padding: 30px 0;
+    font-size: 25px;
   }
 
   .login-form {
@@ -110,6 +115,7 @@ export default {
       outline: none;
       padding: 0 20px;
       border: 1px solid #ccc;
+      font-size 15px
     }
 
     input[type='password'], .btn-sub {
@@ -137,7 +143,7 @@ export default {
     width: 100%;
     bottom: 45px;
     text-align: center;
-
+    font-size: 14px;
     span {
       font-size: 14px;
       color: #7e8c8d;

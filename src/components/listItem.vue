@@ -23,14 +23,9 @@
 <script>
 export default {
   name: 'listItem',
-  props: {
-    dataJson: {
-      type: Object
-    }
-  },
+  props: ['dataJson'],
   data() {
     return {
-      items: [1,2,3,5,6,7]
     };
   }
 }

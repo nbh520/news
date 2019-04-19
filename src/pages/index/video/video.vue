@@ -1,4 +1,4 @@
-<!-- 视频 -->
+<!--  -->
 <template>
   <div>
 
@@ -7,6 +7,7 @@
 
 <script>
 export default {
+  name: '',
   data() {
     return {};
   }

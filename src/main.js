@@ -17,6 +17,7 @@ import 'mint-ui/lib/style.css'
 
 // 自定义组件
 import listItem from '@/components/listItem' // 文章列表
+import login from '@/components/login'       // 登录
 
 Vue.config.productionTip = false
 Vue.use(Mint)
@@ -30,7 +31,7 @@ Vue.prototype.$indicator = Indicator
 
 // 注册全局组件
 Vue.component('list-item', listItem)
-
+Vue.component('login', login)
 
 
 /* eslint-disable no-new */

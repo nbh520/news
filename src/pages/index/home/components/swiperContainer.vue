@@ -1,10 +1,11 @@
 <!-- 轮播组件  -->
 <template>
-  <swpier :options="swiperOption" class="swiper-box">
+  <swiper :options="swiperOption" ref="mySwiper" class="swiper-box">
     <swiper-slide v-for="(item, index) in indexColumn" :key="index">
-      <pull-container />
+      <pull-container :type="item.id" />
+      <!-- <img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3387801611,249624414&fm=58" alt="" srcset=""> -->
     </swiper-slide>
-  </swpier>
+  </swiper>
 </template>
 
 <script>
@@ -17,7 +18,8 @@ export default {
   },
   computed: {
     ...mapGetters('index', [
-      'indexColumn'
+      'indexColumn',
+      'indexActive'
     ])
   },
   data() {
@@ -26,6 +28,16 @@ export default {
 
       }
     };
+  },
+  watch: {
+    indexActive() {
+      this.slideTo()
+    }
+  },
+  methods: {
+    slideTo() {
+      this.$refs.mySwiper.swiper.slideTo(this.indexActive - 1, 300, true)
+    }
   }
 }
 

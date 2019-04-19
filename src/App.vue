@@ -1,20 +1,14 @@
 <template>
   <div id="app">
-    <!-- <keep-alive>
-      <router-view v-if="$route.meta.keepAlive"></router-view>
+    <keep-alive>
+      <router-view></router-view>
     </keep-alive>
-    <router-view v-if="!$route.meta.keepAlive"/>
-    <Foot v-show="$route.meta.showFoot"/> -->
-    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Foot from "@/components/Foot/Foot.vue";
 export default {
-  components: {
-    Foot
-  }
+ 
 };
 </script>
 
