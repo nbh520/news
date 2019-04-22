@@ -48,5 +48,6 @@ export default {
   height 100%
   z-index 0
   background #fff
+  padding-bottom 50px
 }
 </style>

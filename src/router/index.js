@@ -41,44 +41,6 @@ export default new Router({
           ]
         }
       ]
-    },
-    // {
-    //   path: '/home',
-    //   component: Home,
-    //   meta: {
-    //     showFoot: true,
-    //     keepAlive: true
-    //   }
-    // },
-    // {
-    //   path: '/video',
-    //   component: Video,
-    //   meta: {
-    //     showFoot: true,
-    //     keepAlive: true
-    //   }
-    // },
-    // {
-    //   path: '/find',
-    //   component: Find,
-    //   meta: {
-    //     showFoot: true
-    //   }
-    // },
-    // {
-    //   path: '/mine',
-    //   component: Mine,
-    //   meta: {
-    //     showFoot: true
-    //   }
-    // },
-    // {
-    //   path: '/search',
-    //   component: Search
-    // },
-    // {
-    //   path: '/new_content',
-    //   component: NewContent
-    // }
+    }
   ]
 })
