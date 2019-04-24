@@ -27,13 +27,24 @@ export default {
   actions: {
     // 获取文章数据
     async get_Article_data({commit, state, rootState}, {url, source}) {
-      let res = await getNewsContent(url, source)
-      if (res.status === 1) {
-        commit('set_currentArticle', res.data)
-        return res.data
-      } else {
-        return
+      let data
+      if (!data) {
+        let res = await getNewsContent(url, source)
+        if (res.status === 1) {
+          data = res.data
+          let historyData = [state.listArticle, ...state.historyArticle]
+          // 查看本地历史缓存记录是否有记录
+          if (!state.historyArticle.includes(state.listArticle)) {
+            commit('set_historyArticle', historyData)
+          }
+        } 
       }
+      if (data) {
+        commit('set_currentArticle', data)
+      }
+      return data
+      
+      
     },
 
     // 获取历史浏览

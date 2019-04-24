@@ -8,7 +8,7 @@
       </my-top-header>
       <div class="content">
         <div class="container">
-
+          <list-item :dataJson="historyArticle" />
         </div>
       </div>
     </div>
@@ -16,11 +16,17 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'myHistory',
   data() {
     return {};
-  }
+  },
+  computed: {
+    ...mapGetters('detail', [
+      'historyArticle'
+    ])
+  },
 }
 
 </script>

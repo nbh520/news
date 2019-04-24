@@ -37,7 +37,6 @@ export default {
       return `/detail?url=${url}&source=${source}`
     },
     setArticleList(data) {
-      console.log(data)
       this.set_listArticle(data)
     }
   }

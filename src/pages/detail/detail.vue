@@ -67,8 +67,6 @@ export default {
     async init() {
       let { url, source } = this.$route.query
       let res = await this.get_Article_data({ url, source })
-      this.set_historyArticle(this.listArticle)
-      console.log(res)
     }
   }
 }
