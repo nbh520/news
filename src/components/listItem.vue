@@ -3,8 +3,8 @@
   <ul class="listItem">
     <template v-for="data in dataJson">
       <!-- 一张小图 -->
-      <li>
-        <router-link to="" class="oneSmall">
+      <li @click.stop="setArticleList(data)">
+        <router-link :to="url(data.content, data.source_address)"  class="oneSmall">
           <div class="news_title">
             <h3> {{ data.title }}</h3>
             <div class='news_info'>
@@ -21,12 +21,25 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
   name: 'listItem',
   props: ['dataJson'],
   data() {
     return {
     };
+  },
+  methods: {
+    ...mapMutations('detail', [
+      'set_listArticle'
+    ]),
+    url(url, source) {
+      return `/detail?url=${url}&source=${source}`
+    },
+    setArticleList(data) {
+      console.log(data)
+      this.set_listArticle(data)
+    }
   }
 }
 

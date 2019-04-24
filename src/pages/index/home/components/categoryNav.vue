@@ -43,10 +43,15 @@ nav {
   border-bottom 1px solid #ddd
   .nav_ul {
     overflow: hidden;
-    overflow-x: hidden;
+    overflow-x: auto;
     --webkit-overflow-scrolling touch
     white-space nowrap
     font-size 0
+    &::-webkit-scrollbar{
+      width 0
+      height 0
+      display none
+    }
     a {
       display table-cell
       vertical-align middle

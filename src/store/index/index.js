@@ -1,5 +1,4 @@
 import { reqAllCategory, reqGetNews } from '@/api/index/home'
-import fetch from '../../utils/request'
 export default {
   namespaced: true,
   state: {

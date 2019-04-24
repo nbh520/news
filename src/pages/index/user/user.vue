@@ -2,9 +2,10 @@
 <template>
   <div class="box">
     <div class="container">
-      <div class="login-status">
+      <div v-if="isUser" class="login-status">
         <button class="btn-login" @click="loginWindowTop = true">登录</button>
       </div>
+      <person />
       <div class="my-features">
         <span>
           <i class="iconfont icon-ai-mark"></i>
@@ -18,80 +19,61 @@
           <i class="iconfont icon-zan1"></i>
           我的点赞
         </span>
-        <span>
-          <i class="iconfont icon-lishijilu"></i>
-          浏览历史
-        </span>
+          <span>
+            <router-link :to="{name: 'myHistory'}">
+              <i class="iconfont icon-lishijilu"></i>
+              浏览历史
+            </router-link>
+          </span>
       </div>
-      <!-- <div class="other-list">
-        <ul class="feature-list">
-          <li>
-            我的关注
-            <span>
-              <i class="iconfont icon-right"></i>
-            </span>
-          </li>
-          <li>
-            消息通知
-            <span>
-              <i class="iconfont icon-right"></i>
-            </span>
-          </li>
-          <li>
-            阅读公益
-            <span>
-              今日阅读10分钟
-              <i class="iconfont icon-right"></i>
-            </span>
-          </li>
-        </ul>
-        <ul class="money-list">
-          <li>
-            我的钱包
-            <span>
-              手机充值
-              <i class="iconfont icon-right"></i>
-            </span>
-          </li>
-          <li>
-            京东特供
-            <span>
-              新人领188元红包
-              <i class="iconfont icon-right"></i>
-            </span>
-          </li>
-        </ul>
-        <ul class="setting-list">
-          <li>
-            用户反馈
-            <span>
-              <i class="iconfont icon-right"></i>
-            </span>
-          </li>
-          <li>
-            系统设置
-            <span>
-              <i class="iconfont icon-right"></i>
-            </span>
-          </li>
-        </ul>
-      </div> -->
       <div class="group">
-        <mt-cell title="我的收藏"></mt-cell>
+        <mt-cell title="我的收藏">
+          <i class="iconfont icon-right"></i>
+        </mt-cell>
+        <mt-cell title="消息通知">
+          <i class="iconfont icon-right"></i>  
+        </mt-cell>        
+      </div>
+      <div class="group">
+        <mt-cell title="扫码分享">
+          <i class="iconfont icon-right"></i>
+        </mt-cell>
+        <mt-cell title="意见反馈">
+          <i class="iconfont icon-right"></i>
+        </mt-cell>
+        <mt-cell title="系统设置">
+          <i class="iconfont icon-right"></i>
+        </mt-cell>
+        
+      </div>
+      <div class="group">
+        <mt-cell title="退出登录">
+          <i class="iconfont icon-right"></i>
+        </mt-cell>
       </div>
     </div>
     <div class="cover" v-show="loginWindowTop"></div>
     <div class="login" ref="loginWindow" :style="{top: loginWindowTop? '0': '100%'}">
       <login @close="closeWindow"></login>
     </div>
+
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 
 <script>
+import person from './components/person'
 export default {
+  name: 'user',
+  components: {
+    person
+  },
   data() {
     return {
-      loginWindowTop: false
+      loginWindowTop: false,
+      isUser: false
     };
   },
   methods: {
@@ -169,31 +151,19 @@ $backColor = #eee;
       }
     }
 
-    // .other-list {
-    //   margin-top: $marginTop;
-    //   background: $backColor;
+    .group {
+      margin 0.2rem 0 0 0 
 
-    //   ul>li {
-    //     padding-left: 17px;
-    //     font-size: 16px;
-    //     // height: 40px;
-    //     line-height: 40px;
-    //     background: #fff;
-    //     border-bottom: 1px solid $backColor;
-    //     box-sizing: border-box;
-
-    //     span {
-    //       float: right;
-    //       font-size: 13px;
-    //       color: #666;
-    //       margin-right: 10px;
-    //     }
-    //   }
-
-    //   .money-list, .setting-list {
-    //     margin-top: $marginTop;
-    //   }
-    // }
+      .mint-cell{
+        color: #333;
+        min-height: 1.2rem;
+        font-size: 0.426rem;
+        padding-left: 0.20rem;
+        padding-right: 0.25rem;
+        border-bottom: 1px solid #dbdbdc;
+      }
+    }
+    
   }
 
   .login {

@@ -6,6 +6,7 @@ import router from './router'
 import store from './store'
 import '@/assets/css/reset.css'
 import '@/assets/css/global.css'
+import '@/assets/css/reset.styl'
 
 
 // 第三方库
@@ -16,8 +17,9 @@ import 'mint-ui/lib/style.css'
 
 
 // 自定义组件
-import listItem from '@/components/listItem' // 文章列表
-import login from '@/components/login'       // 登录
+import listItem from '@/components/listItem'       // 文章列表
+import login from '@/components/login'             // 登录
+import myTopHeader from '@/components/myTopHeader' // 顶层头部组件
 
 Vue.config.productionTip = false
 Vue.use(Mint)
@@ -32,7 +34,7 @@ Vue.prototype.$indicator = Indicator
 // 注册全局组件
 Vue.component('list-item', listItem)
 Vue.component('login', login)
-
+Vue.component('my-top-header', myTopHeader)
 
 /* eslint-disable no-new */
 new Vue({

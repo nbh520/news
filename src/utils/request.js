@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import {MessageBox, Toast} from 'mint-ui'
 // 创建axios实例
 const service = axios.create({
   baseURL: process.env.BASE_API, // api 的 base_url
@@ -61,12 +61,10 @@ service.interceptors.response.use(
     }
   },
   error => {
-    console.log('err' + error) // for debug
-    // Message({
-    //   message: error.message,
-    //   type: 'error',
-    //   duration: 5 * 1000
-    // })
+    if (error.message.includes('timeout')) {
+      Toast('请求超时')
+    }
+    console.log('err:' + error) // for debug
     return Promise.reject(error)
   }
 )

@@ -3,7 +3,6 @@ import App from '../App'
 import Router from 'vue-router'
 
 
-
 Vue.use(Router)
 
 export default new Router({
@@ -21,7 +20,7 @@ export default new Router({
             {
               name: 'home',
               path: 'home',
-              component: () => import('@/pages/index/home/home')
+              component: () => import('@/pages/index/home/home'),
             },
             {
               name: 'video',
@@ -36,9 +35,21 @@ export default new Router({
             {
               name: 'user',
               path: 'user',
-              component: () => import('@/pages/index/user/user')
+              component: () => import('@/pages/index/user/user'),
+              children: [
+                {
+                  name: 'myHistory',
+                  path: 'myHistory',
+                  component: () => import('@/pages/index/user/children/myHistory')
+                }
+              ]
             }
           ]
+        },
+        {
+          name: 'detail',
+          path: '/detail',
+          component: () => import('@/pages/detail/detail')
         }
       ]
     }

@@ -1,0 +1,51 @@
+<!-- 登录成功组件 -->
+<template>
+  <header>
+    <div class="user">
+      <div class="avator">
+        <img src="https://avatars0.githubusercontent.com/u/23046440?s=460&v=4">
+      </div>
+      <div class="name">
+        <span>涵涵涵</span>
+      </div>
+    </div>
+  </header>
+</template>
+
+<script>
+export default {
+  name: '',
+  data() {
+    return {};
+  }
+}
+
+</script>
+<style lang="stylus" rel="stylesheet/scss" scoped>
+header {
+  width 100%
+  height 100%
+  box-sizing border-box
+  padding 0.5rem 0 0.5rem 0
+  background linear-gradient(#333, #666, #333)
+  .user, &.avator{
+    width 100%
+    height 100%
+    text-align center
+    .avator {
+      img {
+        width 80px
+        height 80px
+        border-radius 50%
+        box-shadow 0 0 1rem #eee
+      }
+    }
+    .name {
+      box-sizing border-box
+      margin-top  0.2rem
+      font-size 0.462rem
+      color #fff
+    }
+  }
+}
+</style>
