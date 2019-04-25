@@ -3,7 +3,7 @@
   <ul class="listItem">
     <template v-for="data in dataJson">
       <!-- 一张小图 -->
-      <li @click.stop="setArticleList(data)">
+      <li @click.stop="setArticleList(data)" v-if="!data.duration">
         <router-link :to="url(data.content, data.source_address)"  class="oneSmall">
           <div class="news_title">
             <h3> {{ data.title }}</h3>
@@ -14,6 +14,23 @@
           <div class='news_img'>
             <img :src="data.coverImg">
           </div> 
+        </router-link>
+      </li>
+      <!-- 视频 -->
+      <li v-if="data.duration">
+        <router-link to="" class="video">
+          <div class="video_wrapper">
+            <div class="video_info">
+              <div class="video_title">
+                <p>{{ data.title }}</p>
+              </div>
+              <div class="total_time">{{ data.duration }}</div>
+              <video controls>
+                <source :src="data.content">
+              </video>
+            </div>
+
+          </div>
         </router-link>
       </li>
     </template>
@@ -112,6 +129,56 @@ larger_height=4.6875rem
       img {
           width: 100%;
           min-height: small_height;
+      }
+    }
+  }
+  .video {
+    video {
+      width 100%
+    }
+    .video_wrapper {
+      width 100%
+      height larger_height
+      position: relative;
+      overflow: hidden;
+      color: #999;
+      .video_info {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      .video_title {
+        position: absolute;
+        width: 100%;
+        height: 80px;
+        top: 0;
+        left: 0;
+        color: #fff;
+        p {
+          width: 100%;
+          font-size: 14px;
+          line-height: 24px;
+          padding: 8px 0.4rem 0;
+          margin: 0;
+          color: #fff!important;
+        }
+      }
+      .total_time {
+        position: absolute;
+        display: inline-block;
+        width: 40px;
+        right: 5px;
+        bottom: 5px;
+        background: rgba(0, 0, 0, .5);
+        color: #fff;
+        font-size: 12px;
+        text-align: center;
+        height: 20px;
+        line-height: 20px;
+        border-radius: 10px;
+        z-index: 222;
       }
     }
   }

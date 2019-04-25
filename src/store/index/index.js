@@ -28,7 +28,7 @@ export default {
     // 获取栏目数据
     async get_indexColumn_data({ commit, state, dispatch }){
       let result = await reqAllCategory()
-      result = result.data.filter(item => item.name !== '暂无')
+      result = result.filter(item => item.name !== '暂无')
       let res = [...state.indexColumn, ...result]
       commit('set_indexColumn', res)
       return res
@@ -37,7 +37,7 @@ export default {
     // 获取文章列表数据
     async get_listItem_data({}, {limit, categoryName}) {
       let result = await reqGetNews(limit, categoryName)
-      return result.data
+      return result
     }
   }
 }

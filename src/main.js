@@ -20,6 +20,8 @@ import 'mint-ui/lib/style.css'
 import listItem from '@/components/listItem'       // 文章列表
 import login from '@/components/login'             // 登录
 import myTopHeader from '@/components/myTopHeader' // 顶层头部组件
+import replyTool from '@/components/replyTool'     // 底部评论框
+
 
 Vue.config.productionTip = false
 Vue.use(Mint)
@@ -35,6 +37,7 @@ Vue.prototype.$indicator = Indicator
 Vue.component('list-item', listItem)
 Vue.component('login', login)
 Vue.component('my-top-header', myTopHeader)
+Vue.component('reply-tool', replyTool)
 
 /* eslint-disable no-new */
 new Vue({

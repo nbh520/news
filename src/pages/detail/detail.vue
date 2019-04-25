@@ -5,6 +5,7 @@
       <a slot="left" class="back iconfont icon-left" @click.stop="$router.go(-1)"></a>
       <a slot="right" class="menu iconfont icon-gengduo"></a>
     </my-top-header>
+    <!-- 内容 -->
     <div class="content">
       <div class="container">
         <!-- 文章内容 -->
@@ -28,6 +29,8 @@
         </template>
       </div>
     </div>
+
+    <reply-tool />
   </div>
 </template>
 

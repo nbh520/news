@@ -57,7 +57,7 @@ export default {
   right: 0;
   width: 100%;
   height: 50px;
-  z-index: 100;
+  z-index: 100000;
   display: flex;
   background-color: #fff;
   border-top: 1px solid #ddd;

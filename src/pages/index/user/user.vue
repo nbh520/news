@@ -2,10 +2,10 @@
 <template>
   <div class="box">
     <div class="container">
-      <div v-if="isUser" class="login-status">
+      <div v-if="!userLogin" class="login-status">
         <button class="btn-login" @click="loginWindowTop = true">登录</button>
       </div>
-      <person />
+      <person v-else />
       <div class="my-features">
         <span>
           <i class="iconfont icon-ai-mark"></i>
@@ -46,7 +46,7 @@
         </mt-cell>
         
       </div>
-      <div class="group">
+      <div class="group"  @click="c_Login_out">
         <mt-cell title="退出登录">
           <i class="iconfont icon-right"></i>
         </mt-cell>
@@ -65,6 +65,7 @@
 
 <script>
 import person from './components/person'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'user',
   components: {
@@ -73,12 +74,24 @@ export default {
   data() {
     return {
       loginWindowTop: false,
-      isUser: false
     };
   },
+  computed: {
+    ...mapGetters('user', [
+      'userLogin',
+    ])
+  },
   methods: {
+    ...mapActions('user', [
+      'login',
+      'loginOut'
+    ]),
     closeWindow() {
       this.loginWindowTop = false;
+    },
+    c_Login_out() {
+      console.log('adsf')
+      this.loginOut()
     }
   }
 };

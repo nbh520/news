@@ -11,8 +11,8 @@
     </div>
     <div class="login-form">
       <form action @submit.prevent="onSubmit">
-        <input type="text" name="phone" placeholder="手机号">
-        <input type="password" name="password" placeholder="密码">
+        <input type="text" name="phone" placeholder="手机号" v-model="username">
+        <input type="password" name="password" placeholder="密码" v-model="password">
         <button class="btn-sub">进入新闻</button>
       </form>
     </div>
@@ -34,23 +34,30 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'login',
   data() {
     return {
       registerText: "账号注册",
       pwdLoginText: "密码登录",
+      username: 'ioan',
+      password: '123456',
       list: []
     };
   },
-  mounted() {
-  },
   methods: {
+    ...mapActions('user', [
+      'login'
+    ]),
     //关闭当前登录页
     closeWindow() {
       this.$emit("close", true);
     },
-    onSubmit() {
+    async onSubmit() {
+      let { username, password } = this
+      let result = await this.login({ username, password })
+      if (result) this.closeWindow()
       return false
     },
 

@@ -3,20 +3,26 @@
   <header>
     <div class="user">
       <div class="avator">
-        <img src="https://avatars0.githubusercontent.com/u/23046440?s=460&v=4">
+        <img :src="userInfo.avatar">
       </div>
       <div class="name">
-        <span>涵涵涵</span>
+        <span>{{ userInfo.nickName }}</span>
       </div>
     </div>
   </header>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-  name: '',
+  name: 'person',
   data() {
     return {};
+  },
+  computed: {
+    ...mapGetters('user', [
+      'userInfo'
+    ])
   }
 }
 

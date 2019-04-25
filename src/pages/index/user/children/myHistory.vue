@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'myHistory',
   data() {
@@ -27,6 +27,14 @@ export default {
       'historyArticle'
     ])
   },
+  methods: {
+    ...mapActions('detail', [
+      'get_historyArticle'
+    ])
+  },
+  mounted() {
+    this.get_historyArticle()
+  }
 }
 
 </script>
