@@ -8,16 +8,22 @@
       <person v-else />
       <div class="my-features">
         <span>
-          <i class="iconfont icon-ai-mark"></i>
-          我的收藏
+          <router-link :to="{ name: 'myFavorite'}">
+            <i class="iconfont icon-ai-mark"></i>
+            我的收藏
+          </router-link>
         </span>
         <span>
-          <i class="iconfont icon-pinglun"></i>
-          我的评论
+          <router-link :to="{ name: 'myComment' }">
+            <i class="iconfont icon-pinglun"></i>
+            我的评论
+          </router-link>
         </span>
         <span>
-          <i class="iconfont icon-zan1"></i>
-          我的点赞
+          <router-link :to="{ name: 'myLike' }">
+            <i class="iconfont icon-zan1"></i>
+            我的点赞
+          </router-link>
         </span>
           <span>
             <router-link :to="{name: 'myHistory'}">

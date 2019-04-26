@@ -24,7 +24,8 @@ export default {
       let res = await postLogin(username, password)
       let userInfo = {
         avatar: res.avatar,
-        nickName: res.nickname
+        nickName: res.nickname,
+        userId: res.userId
       }
       commit('set_userInfo', userInfo)
       commit('set_userLogin', true)

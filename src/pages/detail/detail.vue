@@ -15,10 +15,14 @@
           <like :likeCount="listArticle.voteCount"></like>
           <collect></collect>
         </div>
+        <!-- 分割线 -->
+        <div class="bg-line"></div>
+        <!-- 相关推荐 -->
+        <recomment :data="currentArticle.recomment" />
         <!-- 评论 -->
         <template v-if="currentArticle.reply">
           <!-- 分割线 -->
-          <div class="bg-line"></div>
+          <div class="bg-line" id="comment"></div>
           <div class="comment-hot">
             <div class="comment-title">
               <div class="line">
@@ -27,15 +31,26 @@
             </div>
           </div>
         </template>
+        
       </div>
     </div>
 
-    <reply-tool />
+    <reply-tool>
+      <template slot="tool_btn">
+        <!-- <router-link :to="{ name: 'comment' }"> -->
+           <a class="iconfont icon-comment comment_btn" @click="click_comment"></a>
+        <!-- </router-link> -->
+        <collect type="icon"></collect>
+        <a class="iconfont icon-share share_btn"></a>
+        
+      </template>
+    </reply-tool>
   </div>
 </template>
 
 <script>
 import detailContent from './components/detailContent'
+import recomment from './components/recomment'
 import like from './components/like'
 import collect from './components/collect'
 import { mapActions, mapGetters, mapMutations } from 'vuex'
@@ -44,7 +59,8 @@ export default {
   components: {
     detailContent,
     like,
-    collect
+    collect,
+    recomment
   },
   data() {
     return {
@@ -70,6 +86,10 @@ export default {
     async init() {
       let { url, source } = this.$route.query
       let res = await this.get_Article_data({ url, source })
+    },
+    click_comment() {
+      // 滚动到评论区
+      document.getElementById('comment').scrollIntoView()
     }
   }
 }
@@ -80,51 +100,60 @@ export default {
   width 100%
   height 100%  
   background-color #f8f8f8
-  .container {
-    .article-group {
-      text-align center
-      padding 0.4rem 0
-    }  
-    .comment-hot {
-      padding 0.533rem 0 0
-      background-color #f9f9f9
-      .comment-title {
-        margin-bottom 0.4rem
-        position relative  
-        .line {
+  .content {
+    padding-bottom 48px
+    .container {
+      .article-group {
+        text-align center
+        padding 0.4rem 0
+      }  
+      .comment-hot {
+        padding 0.533rem 0 0
+        background-color #f9f9f9
+        .comment-title {
+          margin-bottom 0.4rem
           position relative  
-          width 2.8rem
-          margin 0 auto
-          text-align center
-          &:before {
-            content ''
-            border-top 2px solid #aaa
-            display block
-            position absolute
-            width 0.4rem
-            top 50%
-            left 0  
+          .line {
+            position relative  
+            width 2.8rem
+            margin 0 auto
+            text-align center
+            &:before {
+              content ''
+              border-top 2px solid #aaa
+              display block
+              position absolute
+              width 0.4rem
+              top 50%
+              left 0  
+            }
+            &:after {
+              content ''
+              border-top 2px solid #aaa
+              display block
+              position absolute 
+              width 0.4rem
+              top 50%
+              right 0  
+            }
           }
-          &:after {
-            content ''
-            border-top 2px solid #aaa
-            display block
-            position absolute 
-            width 0.4rem
-            top 50%
-            right 0  
+          .title {
+            font-size 14px
+            font-weight bold  
           }
-        }
-        .title {
-          font-size 14px
-          font-weight bold  
         }
       }
-    }
-    .bg-line {
-      height 0.13333rem
-      background-color #eee  
-    }
+      .bg-line {
+        height 0.13333rem
+        background-color #eee  
+      }
+  } 
   }
+  
+}
+</style>
+<style>
+.comment_btn {
+  font-size: 20px;
 }
 </style>

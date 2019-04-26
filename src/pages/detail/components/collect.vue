@@ -1,18 +1,39 @@
 <!--  -->
 <template>
-  <span class="iconfont" :class="{'icon-sc': collect,active: collect,'icon-shoucang1': !collect}" @click="collect = !collect">
+  <span class="iconfont" v-if="type === 'btn'" :class="iconObject" @click="selected = !selected">
     收藏
   </span>
- 
+  <a class="iconfont" v-else-if="type === 'icon'" :class="iconObject" @click="selected = !selected"></a>
+  
 </template>
 
 <script>
 export default {
   name: 'collect',
+  props: {
+    type: {
+      type: String,
+      default: 'btn'
+    }
+  },
   data() {
     return {
-      collect: false
+      selected: false,
     };
+  },
+  computed: {
+    iconObject() {
+      return {
+        active: this.selected,
+        'icon-sc': this.selected,
+        'icon-shoucang1': !this.selected
+      }
+    }
+  },
+  methods: {
+    test() {
+      this.selected = !this.selected
+    }
   }
 }
 
@@ -30,6 +51,12 @@ span {
   color #333
   &.active {
     border 1px solid #d81e06
+    color #d81e06  
+  }
+}
+a {
+  font-size 20px
+  &.active {
     color #d81e06  
   }
 }

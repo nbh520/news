@@ -41,7 +41,7 @@ export default {
     return {
       registerText: "账号注册",
       pwdLoginText: "密码登录",
-      username: 'ioan',
+      username: 'test',
       password: '123456',
       list: []
     };

@@ -41,6 +41,21 @@ export default new Router({
                   name: 'myHistory',
                   path: 'myHistory',
                   component: () => import('@/pages/index/user/children/myHistory')
+                },
+                {
+                  name: 'myLike',
+                  path: 'myLike',
+                  component: () => import('@/pages/index/user/children/myThumb')
+                },
+                {
+                  name: 'myFavorite',
+                  path: 'myFavorite',
+                  component: () => import('@/pages/index/user/children/myFavorite')
+                },
+                {
+                  name: 'myComment',
+                  path: 'myComment',
+                  component: () => import('@/pages/index/user/children/myComment')
                 }
               ]
             }

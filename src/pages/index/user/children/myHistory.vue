@@ -1,10 +1,10 @@
 <!-- 我的浏览历史 -->
 <template>
   <transition name="fadeIn">
-    <div class="myHistory">
+    <div class="myHistory"> 
       <my-top-header title="历史记录">
         <a slot="left" class="back iconfont icon-left" @click.stop="$router.go(-1)"></a>
-        <a slot="right" class="menu iconfont icon-gengduo"></a>
+        <a slot="right" class="menu iconfont icon-laji" @click.stop="click_clear_history"></a>
       </my-top-header>
       <div class="content">
         <div class="container">
@@ -16,7 +16,8 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
+import { MessageBox } from 'mint-ui'
 export default {
   name: 'myHistory',
   data() {
@@ -30,7 +31,15 @@ export default {
   methods: {
     ...mapActions('detail', [
       'get_historyArticle'
-    ])
+    ]),
+    ...mapMutations('detail', [
+      'set_historyArticle'
+    ]),
+    click_clear_history() {
+      MessageBox.confirm('确认清除历史记录？').then(action => {
+        this.set_historyArticle([])
+      })
+    }
   },
   mounted() {
     this.get_historyArticle()
