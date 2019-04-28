@@ -13,17 +13,13 @@
             我的收藏
           </router-link>
         </span>
-        <span>
-          <router-link :to="{ name: 'myComment' }">
+        <span @click.stop="click_features('myComment')">
             <i class="iconfont icon-pinglun"></i>
             我的评论
-          </router-link>
         </span>
-        <span>
-          <router-link :to="{ name: 'myLike' }">
+        <span @click.stop="click_features('myLike')">
             <i class="iconfont icon-zan1"></i>
             我的点赞
-          </router-link>
         </span>
           <span>
             <router-link :to="{name: 'myHistory'}">
@@ -98,6 +94,13 @@ export default {
     c_Login_out() {
       console.log('adsf')
       this.loginOut()
+    },
+    click_features(name) {
+      if (this.userLogin) {
+        this.$router.push({ name })
+      } else {
+        this.loginWindowTop = true
+      }
     }
   }
 };

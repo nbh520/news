@@ -3,12 +3,16 @@ import { getLocal, setLocal, removeLocal} from './../../utils/cache'
 export default {
   namespaced: true,
   state: {
-    userInfo: {},         //用户信息
+    userInfo: {},         // 用户信息
     userLogin: false,     // 用户是否登录
+    userLikeList: [],     // 用户点赞的列表
+    userFavoriteList: [], // 用户收藏列表
   },
   getters: {
     userInfo: state => state.userInfo,
-    userLogin: state => state.userLogin
+    userLogin: state => state.userLogin,
+    userLikeList: state => state.userLikeList,
+    userFavoriteList: state => state.userFavoriteList
   },
   mutations: {
     set_userInfo(state, val) {
@@ -16,6 +20,14 @@ export default {
     },
     set_userLogin(state, val) {
       state.userLogin = val
+    },
+    set_userLikeList(state, val) {
+      state.userLikeList = val
+      setLocal('likeList', val)
+    },
+    set_userFavoriteList(state, val) {
+      state.userFavoriteList = val
+      setLocal('favoriteList', val)
     }
   },
   actions: {
@@ -37,6 +49,18 @@ export default {
     loginOut({ commit }) {
       commit('set_userLogin', false)
       removeLocal('isLogin')
+    },
+
+    // 用户点赞
+    user_click_thumb({ commit }, pages) {
+      if (getLocal('likeList')) {
+        let list = JSON.parse(getLocal('likeList'))
+        console.log(list)
+        list.unshift(pages)
+        commit('set_userLikeList', list)
+      } else {
+        commit('set_userLikeList', [pages])
+      }
     }
   }
 }
