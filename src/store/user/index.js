@@ -1,4 +1,4 @@
-import { postLogin } from '@/api/user'
+import { postLogin, postUserOption } from '@/api/user'
 import { getLocal, setLocal, removeLocal} from './../../utils/cache'
 export default {
   namespaced: true,
@@ -41,6 +41,8 @@ export default {
       }
       commit('set_userInfo', userInfo)
       commit('set_userLogin', true)
+      commit('set_userLikeList', res.likeList)
+      commit('set_userFavoriteList', res.favoriteList)
       setLocal('isLogin', userInfo)
       return true
     },
@@ -63,9 +65,11 @@ export default {
       }
     },
 
-    // 提交用户点赞记录
-    async post_user_like({ commit }, pages) {
-
+    // 提交用户本地记录
+    async post_user_Local({ commit, state }, { likeList, favoriteList }) {
+      let id = state.userInfo.userId
+      let res = await postUserOption(id, likeList, favoriteList)
+      return res
     }
   }
 }

@@ -54,6 +54,7 @@ import recomment from './components/recomment'
 import like from './components/like'
 import collect from './components/collect'
 import { mapActions, mapGetters, mapMutations } from 'vuex'
+import { getLocal, setLocal } from '@/utils/cache'
 export default {
   name: 'detail',
   components: {
@@ -80,6 +81,9 @@ export default {
     ...mapMutations('detail', [
       'set_historyArticle'
     ]),
+    ...mapActions('user', [
+      'post_user_Local'
+    ]),
     async init() {
       let { url, source } = this.$route.query
       let res = await this.get_Article_data({ url, source })
@@ -94,7 +98,9 @@ export default {
   },
   destroyed() {
     // 提交点赞和收藏记录
-    
+    const likeList = JSON.parse(getLocal('likeList'))
+    const favoriteList = JSON.parse(getLocal('favoriteList'))
+    this.post_user_Local({ likeList, favoriteList })
   }
 }
 

@@ -11,7 +11,7 @@ export const postLogin = (username, password) => {
   })
 }
 // 获取用户的点赞（like）、收藏（favorite）、评论（comment）
-export const postUserOption = (id, filed) => {
+export const queryUserOption = (id, filed) => {
   return request({
     url: 'user/queryUserOption',
     method: 'post',
@@ -21,3 +21,17 @@ export const postUserOption = (id, filed) => {
     }
   })
 }
+
+// 提交用户的点赞、收藏
+export const postUserOption = (id, likeList, favoriteList) => {
+  return request({
+    url: 'user/postUserOption',
+    method: 'post',
+    data: {
+      id,
+      likeList,
+      favoriteList
+    }
+  })
+}
+

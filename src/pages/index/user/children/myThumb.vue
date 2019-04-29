@@ -8,7 +8,7 @@
       </my-top-header>
       <div class="content">
         <div class="container">
-          <!-- <list-item :dataJson="historyArticle" /> -->
+          <list-item :dataJson="userLikeList" />
         </div>
       </div>
     </div>
@@ -16,10 +16,16 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'myLike',
   data() {
     return {};
+  },
+  computed: {
+    ...mapGetters('user', [
+      'userLikeList'
+    ])
   },
   methods: {
     goBack() {
