@@ -61,6 +61,11 @@ export default {
       } else {
         commit('set_userLikeList', [pages])
       }
+    },
+
+    // 提交用户点赞记录
+    async post_user_like({ commit }, pages) {
+
     }
   }
 }

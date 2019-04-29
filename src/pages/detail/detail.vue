@@ -67,9 +67,6 @@ export default {
       title: '头条',       // 顶部标题
     };
   },
-  mounted() {
-    this.init()
-  },
   computed: {
     ...mapGetters('detail', [
       'currentArticle',
@@ -91,6 +88,13 @@ export default {
       // 滚动到评论区
       document.getElementById('comment').scrollIntoView()
     }
+  },
+  mounted() {
+    this.init()
+  },
+  destroyed() {
+    // 提交点赞和收藏记录
+    
   }
 }
 
