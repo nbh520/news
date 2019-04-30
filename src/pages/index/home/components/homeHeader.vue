@@ -1,20 +1,13 @@
 <!-- 首页头部搜索 -->
 <template>
   <header class="head">
-    <div class="search">
-      <!-- <router-link to="/search"> -->
+    <div class="search" @click="$router.push('/search')">
       <div class="search-icon">
         <i class="iconfont icon-sousuo"></i>
       </div>
       <input type="text">
-      <!-- </router-link> -->
     </div>
-    <!-- <div class="release">
-      <span class="camera">
-        <i class="iconfont icon-zhaoxiangji1"></i>
-      </span>
-      <span class="text">发布</span>
-    </div>-->
+    
   </header>
 </template>
 
@@ -66,31 +59,6 @@ export default {
     }
   }
 
-  .release {
-    width: 20%;
-    height: 100%;
-    float: left;
-
-    span {
-      display: block;
-      font-size: 12px;
-      text-align: center;
-      width: 100%;
-      color: #fff;
-
-      >.icon-zhaoxiangji1 {
-        font-size: 40px;
-      }
-    }
-
-    .camera {
-      height: 70%;
-    }
-
-    .text {
-      font-size: 12px;
-      height: 30%;
-    }
-  }
+  
 }
 </style>

@@ -65,6 +65,11 @@ export default new Router({
           name: 'detail',
           path: '/detail',
           component: () => import('@/pages/detail/detail')
+        },
+        {
+          name: 'search',
+          path: '/search',
+          component: () => import('@/pages/search/search')
         }
       ]
     }
