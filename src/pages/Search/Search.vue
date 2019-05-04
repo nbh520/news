@@ -4,22 +4,39 @@
     <div class="search_top">
       <my-top-header>
         <a slot="left" class="back-black iconfont icon-left" @click.stop="$router.go(-1)"></a>
-        <form class="form" slot='mid'>
+        <form class="form" slot='mid' @click.prevent="get_search">
           <i class="form_icon iconfont icon-sousuo"></i>
-          <input class='form_input' type="search" placeholder="搜索">
+          <input class='form_input' type="search" placeholder="搜索" v-model.trim='keyword'>
         </form>
-        <a slot="right" class="search_btn" > 搜索</a>
+        <a slot="right" class="search_btn" @click.stop="get_search"> 搜索</a>
       </my-top-header>
     </div>
-    
+    <div class="content">
+      <list-item :dataJson="searchData" />
+    </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'Search',
   data() {
-    return {};
+    return {
+      keyword: '',         // 搜索内容
+      searchData: [],      // 搜索数据
+    };
+  },
+  methods: {
+    ...mapActions('search', [
+      'get_search_data'
+    ]),
+    async get_search() {
+      if (this.keyword) {
+        let res = await this.get_search_data({ 'keyword': this.keyword, 'page': 1 })
+        this.searchData = res.article
+      }
+    }
   }
 };
 </script>
