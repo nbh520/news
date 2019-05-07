@@ -8,9 +8,9 @@
       <person v-else />
       <div class="my-features">
         <span>
-          <router-link :to="{ name: 'myFavorite'}">
-            <i class="iconfont icon-ai-mark"></i>
-            我的收藏
+          <router-link :to="{ name: 'myAttention'}">
+            <i class="iconfont icon-guanzhu"></i>
+            我的关注
           </router-link>
         </span>
         <span @click.stop="click_features('myComment')">
@@ -154,7 +154,7 @@ $backColor = #eee;
           margin-bottom: 10px;
           display: block;
 
-          &.icon-ai-mark {
+          &.icon-guanzhu {
             color: #f3b46a;
           }
 

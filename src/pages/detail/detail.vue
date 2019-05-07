@@ -28,6 +28,8 @@
               <div class="line">
                 <div class="title">用户热评</div>
               </div>
+              <!-- 评论列表 -->
+              <comment-item v-for="(item, index) in currentArticle.reply" :key="index" :dataJson="item" />
             </div>
           </div>
         </template>

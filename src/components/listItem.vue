@@ -1,6 +1,6 @@
 <!-- 新闻&视频列表 -->
 <template>
-  <ul class="listItem">
+  <ul class="listItem" :class="{ 'checkBox': visible }">
     <template v-for="data in dataJson">
       <!-- 一张小图 -->
       <li @click.stop="setArticleList(data)" v-if="!data.duration">
@@ -41,7 +41,15 @@
 import { mapMutations } from 'vuex'
 export default {
   name: 'listItem',
-  props: ['dataJson'],
+  props: {
+    dataJson: {
+      default: ''
+    },
+    visible: {
+      type: Boolean,
+      default: false
+    } 
+  },
   data() {
     return {
     };

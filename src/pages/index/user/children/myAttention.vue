@@ -1,4 +1,4 @@
-<!-- 收藏 -->
+<!-- 我的关注 -->
 <template>
   <div></div>
 </template>

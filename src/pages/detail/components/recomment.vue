@@ -3,7 +3,7 @@
   <div class="recommend">
     <div class="comment_title">
       <div class="line">
-        <div class="title">相关推荐</div>
+        <div class="title" v-if="jsonData.length">相关推荐</div>
       </div>
     </div>
     <list-item :dataJson="jsonData" />

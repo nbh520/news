@@ -16,10 +16,10 @@ export default {
   data() {
     return {
       footData: [
-        { name: '首页', icon: 'shouye', route: 'home' },
-        { name: '视频', icon: 'bofang', route: 'video' },
-        { name: '收藏', icon: 'xiaoxi', route: 'collect' },
-        { name: '个人', icon: 'daohanglan-05', route: 'user' },
+        { name: '首页', icon: 'iconindexsel1', route: 'home' },
+        { name: '视频', icon: 'play', route: 'video' },
+        { name: '收藏', icon: 'ai-mark', route: 'collect' },
+        { name: '个人', icon: 'person', route: 'user' },
       ],
       selected: 'home'
     };

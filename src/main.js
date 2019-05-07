@@ -21,6 +21,7 @@ import listItem from '@/components/listItem'       // 文章列表
 import login from '@/components/login'             // 登录
 import myTopHeader from '@/components/myTopHeader' // 顶层头部组件
 import replyTool from '@/components/replyTool'     // 底部评论框
+import commentItem from '@/components/commentItem' // 评论列表
 
 
 Vue.config.productionTip = false
@@ -38,6 +39,8 @@ Vue.component('list-item', listItem)
 Vue.component('login', login)
 Vue.component('my-top-header', myTopHeader)
 Vue.component('reply-tool', replyTool)
+Vue.component('comment-item', commentItem)
+
 
 /* eslint-disable no-new */
 new Vue({

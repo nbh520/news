@@ -34,6 +34,7 @@ export default {
     async get_search() {
       if (this.keyword) {
         let res = await this.get_search_data({ 'keyword': this.keyword, 'page': 1 })
+        console.log(res.article)
         this.searchData = res.article
       }
     }
@@ -45,7 +46,7 @@ export default {
   position relative
   width 100%
   height 100%
-  overflow hidden
+  // overflow hidden
   background-color #fff
   a {
     text-decoration none

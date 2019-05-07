@@ -48,9 +48,9 @@ export default new Router({
                   component: () => import('@/pages/index/user/children/myThumb')
                 },
                 {
-                  name: 'myFavorite',
-                  path: 'myFavorite',
-                  component: () => import('@/pages/index/user/children/myFavorite')
+                  name: 'myAttention',
+                  path: 'myAttention',
+                  component: () => import('@/pages/index/user/children/myAttention')
                 },
                 {
                   name: 'myComment',
