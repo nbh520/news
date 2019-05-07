@@ -132,8 +132,8 @@ larger_height=4.6875rem
     }
     .news_img {
       width: 33%;
-      height: small_height;
-      overflow: hidden;
+      // height: small_height;
+      // overflow: hidden;
       img {
           width: 100%;
           min-height: small_height;

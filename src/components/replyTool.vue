@@ -2,27 +2,86 @@
 <template>
   <div class="tool">
     <div class="left">
-      <div class="text" v-show="!focus">
+      <div class="text" v-show="!focus" @click.stop="input_focus">
         <a class="iconfont icon-combinedshapecopy2"> 写评论... </a>
       </div>
-      <textarea id="input">
-        
-      </textarea>
+      <textarea id="input" @blur="focus = false" v-focus="focus" @focus.stop="onFocus" v-model.trim="commentValue"></textarea>
     </div>
-    <div class="right">
+    <div class="right" v-show="!focus">
       <slot name="tool_btn"></slot>
     </div>
-    <span v-show="focus" class="publish_btn">发送</span>
+    <span v-show="focus" class="publish_btn" @click.stop="sendComment">发送</span>
+    
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 export default {
-  name: '',
+  name: 'replyTool',
   data() {
     return {
-      focus: false
+      focus: false,      // 评论聚焦
+      commentValue: '',  // 评论内容
     };
+  },
+  computed: {
+    ...mapGetters('user', [
+      'userLogin'
+    ])
+  },
+  methods: {
+    ...mapActions('detail', [
+      'post_comment_data'
+    ]),
+    input_focus() {
+      this.focus = true
+    },
+    // 评论聚焦时
+    onFocus() {
+      this.focus = true
+    },
+    // 发送评论
+    async sendComment() {
+      if (!this.userLogin) {
+        this.$msgBox({
+          title: '提示',
+          message: '您还未登录，是否登录？',
+          showCancelButton: true,
+          closeOnClickModal: false
+        }).then( res => {
+          this.$emit('loginShow')
+        })
+        return
+      }
+      if (!this.commentValue) {
+        this.$toast({
+            message: '内容不能为空',
+            duration: 800
+          }
+        )
+        return
+      }
+      // 普通评论
+      let res = await this.post_comment_data(this.commentValue)
+      if (res === 'success') {
+        this.$toast({
+            message: '发送成功',
+            duration: 800
+          }
+        )
+        this.commentValue = ''
+      }
+    }
+  },
+  directives: {
+    focus: {
+      update: function(el, value) {
+        if (value) {
+          el.focus()
+        }
+      }
+    }
   }
 }
 
@@ -100,6 +159,15 @@ export default {
       line-height 48px
       
     }
+  }
+  .publish_btn {
+    display table-cell
+    padding-left 15px
+    font-size 16px
+    font-weight bold
+    color #aaa
+    user-select none
+    vertical-align middle
   }
 }
 </style>

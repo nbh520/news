@@ -1,4 +1,4 @@
-import { postLogin, postUserOption } from '@/api/user'
+import { postLogin, postUserOption, getCommentData } from '@/api/user'
 import { getLocal, setLocal, removeLocal} from './../../utils/cache'
 export default {
   namespaced: true,
@@ -69,6 +69,12 @@ export default {
     async post_user_Local({ commit, state }, { likeList, favoriteList }) {
       let id = state.userInfo.userId
       let res = await postUserOption(id, likeList, favoriteList)
+      return res
+    },
+
+    // 获取用户评论
+    async get_comment_data({ state }) {
+      let res = await getCommentData(state.userInfo.userId)
       return res
     }
   }

@@ -9,8 +9,7 @@
         <div class="name">{{ dataJson.nickname }}</div>
       </div>
       <div class="mid">
-        <div class="content_text">
-          {{ dataJson.content }}
+        <div class="content_text" v-html="dataJson.content">
           <span class="altUser"></span>
         </div>
       </div>

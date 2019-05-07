@@ -28,7 +28,6 @@ export default {
    // 登录校验
    login_check() {
      if (!this.userLogin) {
-       console.log(getLocal('isLogin'))
        if (getLocal('isLogin')) {
          this.set_userLogin(true)
          this.set_userInfo(JSON.parse(getLocal('isLogin')))

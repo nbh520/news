@@ -1,4 +1,4 @@
-import { getNewsContent } from '@/api/detail/detail'
+import { getNewsContent, postCommentData } from '@/api/detail/detail'
 import { getLocal, setLocal, removeLocal} from './../../utils/cache'
 export default {
   namespaced: true,
@@ -48,6 +48,25 @@ export default {
       if (historyData && historyData.length > 0) {
         commit('set_historyArticle', historyData)
       }
-    }
+    },
+
+    // 提交评论的数据
+    async post_comment_data({ state, rootState }, content) {
+      let commentData = {
+        article_id: state.currentArticle.info.id,
+        user_id: rootState.user.userInfo.userId,
+        avatar: rootState.user.userInfo.avatar,
+        nickname: rootState.user.userInfo.nickName,
+        to_uid: null,
+        content, 
+        sourceId: state.currentArticle.info.source_id
+      }
+      let res = await postCommentData(commentData)
+      return res
+    },
+
+    // 提交回复的数据
+    async post_reply_data({ state, rootState }, { uid, content }){}
+    
   }
 }

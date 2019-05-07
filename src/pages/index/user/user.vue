@@ -7,11 +7,9 @@
       </div>
       <person v-else />
       <div class="my-features">
-        <span>
-          <router-link :to="{ name: 'myAttention'}">
-            <i class="iconfont icon-guanzhu"></i>
-            我的关注
-          </router-link>
+        <span @click.stop="click_features('myAttention')">
+          <i class="iconfont icon-guanzhu"></i>
+          我的关注
         </span>
         <span @click.stop="click_features('myComment')">
             <i class="iconfont icon-pinglun"></i>
@@ -21,15 +19,13 @@
             <i class="iconfont icon-zan1"></i>
             我的点赞
         </span>
-          <span>
-            <router-link :to="{name: 'myHistory'}">
-              <i class="iconfont icon-lishijilu"></i>
-              浏览历史
-            </router-link>
-          </span>
+        <span @click.stop="click_features('myHistory')">
+          <i class="iconfont icon-lishijilu"></i>
+          浏览历史
+        </span>
       </div>
       <div class="group">
-        <mt-cell title="我的收藏">
+        <mt-cell title="我的投稿">
           <i class="iconfont icon-right"></i>
         </mt-cell>
         <mt-cell title="消息通知">

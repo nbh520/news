@@ -1,7 +1,7 @@
 <!-- 新闻内容 -->
 <template>
   <div class="detail">
-    <my-top-header :title="title">
+    <my-top-header :title="title" v-show="!loginShow">
       <a slot="left" class="back iconfont icon-left" @click.stop="$router.go(-1)"></a>
       <a slot="right" class="menu iconfont icon-gengduo"></a>
     </my-top-header>
@@ -37,7 +37,12 @@
       </div>
     </div>
 
-    <reply-tool>
+    <!-- 用户登录 -->
+    <div class="login" :style="{top: loginShow ? '0': '100%'}">
+      <login @close="loginShow = false"></login>
+    </div>
+    
+    <reply-tool @loginShow="loginShow = true">
       <template slot="tool_btn">
         <!-- <router-link :to="{ name: 'comment' }"> -->
            <a class="iconfont icon-comment comment_btn" @click="click_comment"></a>
@@ -68,6 +73,7 @@ export default {
   data() {
     return {
       title: '头条',       // 顶部标题
+      loginShow: false,   // 登录界面---- 用户需要登录操作时显示
     };
   },
   computed: {
@@ -159,7 +165,16 @@ export default {
         height 0.13333rem
         background-color #eee  
       }
-  } 
+    } 
+  }
+  .login {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 100%;
+    bottom: 0;
+    z-index: 10000;
+    transition: 0.5s;
   }
   
 }

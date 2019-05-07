@@ -35,3 +35,14 @@ export const postUserOption = (id, likeList, favoriteList) => {
   })
 }
 
+// 获取评论
+export const getCommentData = (id) => {
+  return request({
+    url: 'comment/getUserComment',
+    method: 'post',
+    data: {
+      id
+    }
+  })
+}
+
