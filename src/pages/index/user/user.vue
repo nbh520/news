@@ -55,7 +55,7 @@
       <login @close="closeWindow"></login>
     </div>
 
-    <keep-alive>
+    <keep-alive exclude="myComment">
       <router-view></router-view>
     </keep-alive>
   </div>

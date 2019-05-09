@@ -16,7 +16,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
+import { getLocal, setLocal } from '@/utils/cache'
 export default {
   name: 'myLike',
   data() {
@@ -28,8 +29,17 @@ export default {
     ])
   },
   methods: {
+    ...mapMutations('user', [
+      'set_userLikeList'
+    ]),
     goBack() {
       this.$router.go(-1)
+    }
+  },
+  created() {
+    if (getLocal('likeList')) {
+      let res = JSON.parse(getLocal('likeList'))
+      this.set_userLikeList(res)
     }
   }
 }

@@ -46,3 +46,13 @@ export const getCommentData = (id) => {
   })
 }
 
+// 删除评论
+export const deleteCommentData = (ids) => {
+  return request({
+    url: 'comment/deleteCommentData',
+    method: 'post',
+    data: {
+      ids
+    }
+  })
+}

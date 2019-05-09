@@ -5,7 +5,7 @@
       <div class="text" v-show="!focus" @click.stop="input_focus">
         <a class="iconfont icon-combinedshapecopy2"> 写评论... </a>
       </div>
-      <textarea id="input" @blur="focus = false" v-focus="focus" @focus.stop="onFocus" v-model.trim="commentValue"></textarea>
+      <textarea id="input" @blur="focus = false"  @focus.stop="focus = true" v-model.trim="commentValue"></textarea>
     </div>
     <div class="right" v-show="!focus">
       <slot name="tool_btn"></slot>
@@ -77,6 +77,7 @@ export default {
   directives: {
     focus: {
       update: function(el, value) {
+        console.log('聚焦')
         if (value) {
           el.focus()
         }

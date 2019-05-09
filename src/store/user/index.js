@@ -1,4 +1,4 @@
-import { postLogin, postUserOption, getCommentData } from '@/api/user'
+import { postLogin, postUserOption, getCommentData, deleteCommentData } from '@/api/user'
 import { getLocal, setLocal, removeLocal} from './../../utils/cache'
 export default {
   namespaced: true,
@@ -75,6 +75,12 @@ export default {
     // 获取用户评论
     async get_comment_data({ state }) {
       let res = await getCommentData(state.userInfo.userId)
+      return res
+    },
+    // 删除用户的评论
+    async delete_comment_data({ state }, ids) {
+      const idArr = Array.from(ids)
+      let res = await deleteCommentData(idArr)
       return res
     }
   }
